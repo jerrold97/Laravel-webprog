@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('destination', 'DestinationController');
+	Route::get('/destination-table/', 'DestinationController@table')->name('destination.table');
 	Route::resource('official', 'OfficialController');
 });
 Auth::routes();
