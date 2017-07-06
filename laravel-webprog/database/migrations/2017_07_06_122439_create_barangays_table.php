@@ -14,8 +14,12 @@ class CreateBarangaysTable extends Migration
     public function up()
     {
         Schema::create('barangays', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('barangays_id');
+            $table->integer('fkbarangays_municipalities')->unsigned();
+            $table->text('barangay_name');
+            $table->text('barangay_desc');
             $table->timestamps();
+            $table->foreign('fkbarangays_municipalities')->references('municipality_id')->on('municipalities');
         });
     }
 
