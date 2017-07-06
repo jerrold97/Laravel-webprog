@@ -14,9 +14,19 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.provinces.index', ['provinces' => $provinces]);
     }
 
+    public function table(Request $request){
+        if($request->ajax()){
+            $provinces = Province::all();
+            return view('admin.provinces.table')->with('provinces', $provinces); 
+        }
+        else {
+            return redirect(route('clients.index'));
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
