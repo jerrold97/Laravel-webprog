@@ -15,10 +15,12 @@ class CreateMunicipalitiesTable extends Migration
     {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->increments('municipality_id');
+            $table->integer('fkmunicipality_provinces')->unsigned();;
+            $table->foreign('fkmunicipality_provinces')->references('provinces_id')->on('provinces');
             $table->text('municipality');
             $table->timestamps();
 
-            $table->foreign('municipality_id')->references('provinces_id')->on('provinces');
+
         });
     }
 
@@ -29,6 +31,9 @@ class CreateMunicipalitiesTable extends Migration
      */
     public function down()
     {
+        Schema::table('municipalities', function(Blueprint $table) {
+            $table->dropForeign(['fkmunicipality_provinces']);
+        });
         Schema::dropIfExists('municipalities');
     }
 }
