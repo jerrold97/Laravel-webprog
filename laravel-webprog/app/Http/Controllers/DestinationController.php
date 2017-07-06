@@ -104,7 +104,9 @@ class DestinationController extends Controller
     public function edit(Request $request, $id)
     {
         if($request->ajax()) {
+
             $destination = Destination::findOrFail($id);
+            
             $title= "Edit Destination Information";
            return view('admin.destinations.form')
                 ->with('destination', $destination)
