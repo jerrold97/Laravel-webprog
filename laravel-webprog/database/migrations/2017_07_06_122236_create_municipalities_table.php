@@ -14,8 +14,11 @@ class CreateMunicipalitiesTable extends Migration
     public function up()
     {
         Schema::create('municipalities', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('municipality_id');
+            $table->text('municipality');
             $table->timestamps();
+
+            $table->foreign('municipality_id')->references('provinces_id')->on('provinces');
         });
     }
 
