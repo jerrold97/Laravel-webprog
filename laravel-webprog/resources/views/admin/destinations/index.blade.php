@@ -81,7 +81,7 @@
                 $('#modal').addClass('modal-primary');
 
                 var id = $(e.target).data('id');
-                
+                console.log(id);
                 console.log('open_edit_modal');
                 $.ajax({
                     type: 'GET',

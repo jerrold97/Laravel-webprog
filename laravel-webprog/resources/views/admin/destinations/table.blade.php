@@ -14,13 +14,13 @@
         <td>{{ $destination->dlocation}}</td>
         <td>{{ $destination->ddesc}}</td>
         <td class="">
-            <div class="delete-modal btn-sm btn-danger pull-right delete" data-id="{{$destination->id}}">
+            <div class="delete-modal btn-sm btn-danger pull-right delete" data-id="{{$destination->destinations_id}}">
                 <i class="voyager-trash"></i> Delete
             </div>
-            <a data-id="{{$destination->id}}" href="#" class="btn-sm btn-primary pull-right edit">
+            <a data-id="{{$destination->destinations_id}}" href="#" class="btn-sm btn-primary pull-right edit">
                 <i class="voyager-edit"></i> Edit
             </a>
-            <a data-id="{{$destination->id}}" href="#" class="btn-sm btn-warning pull-right view">
+            <a data-id="{{$destination->destinations_id}}" href="#" class="btn-sm btn-warning pull-right view">
                 <i class="voyager-eye"></i> View
             </a>
         </td>

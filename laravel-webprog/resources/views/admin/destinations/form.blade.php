@@ -6,8 +6,8 @@
     @if($type=="CREATE")
         {!! Form::open(array ('id'=>'add_form', 'class'=>'form-horizontal', 'route'=>'destination.store') ) !!}
     @elseif($type=="EDIT")
-        {!! Form::model($destination, array ('id'=>'edit_form', 'class'=>'form-horizontal', 'route'=>array('destination.update',$destination->id), 'method'=>'PUT') ) !!}
-        <input type="hidden" name="id" id="id" value="{{ $destination->id }}">
+     {!! Form::model($destination, array ('id'=>'edit_form', 'class'=>'form-horizontal', 'route'=>array('destination.update',$destination->destinations_id), 'method'=>'PUT') ) !!}
+        <input type="hidden" name="id" id="id" value="{{ $destination->destinations_id }}">
     @else
         {!! Form::model($destination, array ('id'=>'view_form', 'class'=>'form-horizontal', 'route'=>'destination.index' )) !!}
     @endif
