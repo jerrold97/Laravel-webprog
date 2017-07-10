@@ -15,6 +15,8 @@ class CreateDestinationsTable extends Migration
     {
         Schema::create('destinations', function (Blueprint $table) {
             $table->increments('destinations_id');
+            $table->integer('fkdestination_barangays')->unsigned();
+            $table->foreign('fkdestination_barangays')->references('barangays_id')->on('barangays');
             $table->string('dname');
             $table->string('dlocation');
             $table->string('ddesc');
