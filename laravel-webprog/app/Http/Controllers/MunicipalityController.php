@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Municipality;
+use App\Province;
 use Illuminate\Http\Request;
+
+
 
 class MunicipalityController extends Controller
 {
@@ -12,9 +15,14 @@ class MunicipalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index($province_id){
+        $provinces=Province::all();
+        $municipalities = Municipality::findOrFail($province_id)->get();
+        return view('admin.municipalities.index')->with('municipalities',$municipalities)->with('provinces',$provinces);
+    }
+    public function table($province_id){
+        $municipalities = Municipality::findOrFail($province_id);
+        return view('admin.municipalities.table')->with('municipalities',$municipalities);
     }
 
     /**
@@ -35,7 +43,7 @@ class MunicipalityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->all();
     }
 
     /**
