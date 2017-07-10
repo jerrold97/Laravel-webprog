@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Province;
 use Illuminate\Http\Request;
-
+use App\Municipality;
 class ProvinceController extends Controller
 {
     /**
@@ -45,18 +45,23 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->capital;
     }
-
+    public function save(Request $request)
+    {
+        $request->capital;
+    }
     /**
      * Display the specified resource.
      *
      * @param  \App\Province  $province
      * @return \Illuminate\Http\Response
      */
-    public function show(Province $province)
+    public function show($id)
     {
-        //
+        $municipalities = Municipality::find($id)->get();
+
+        return view('admin.municipalities.index')->with('municipalities', $municipalities);
     }
 
     /**
