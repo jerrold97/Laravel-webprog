@@ -1,0 +1,32 @@
+
+.btn, .navbar{
+	border-radius: 0;
+}
+.navbar {
+	border: 0;
+	
+}
+.noPadding{
+	padding: 0;
+	margin: 0;
+}
+.sidebar {
+	height: 100vh;
+}
+.sidebar a{
+	color: white;
+}
+.sidebar a:hover{
+	color: black;
+}
+.list-group a:hover{
+	background: Firebrick;
+	color: white;
+}
+.list-group a{
+	transition: background .5s;
+}
+.table-head {
+	background: maroon;
+	color: white;
+}

@@ -37,3 +37,13 @@ Route::group(['prefix' => 'admin'], function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'website'], function(){
+	Route::get('index','WebController@index');
+	Route::get('about','WebController@about')->name('about');
+});
+
+Route::group(['prefix' => 'adminportal'], function(){
+	Route::get('index','AdminController@index')->name('admin.index');
+	Route::get('/destinations','AdminController@destinations')->name('admin.destinations');
+});

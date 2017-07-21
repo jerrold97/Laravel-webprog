@@ -1,29 +1,31 @@
-@extends('layouts.app')
+@extends('adminPortal.masterfile')
 @section('content')
-<div class="container" id="destindex">
-    <div>
-    @if(Session::has('info'))
+<div class="col-md-10">
+    <div class="container" id="destindex">
+        <div>
+        @if(Session::has('info'))
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="alert alert-info">{{ Session::get('info') }}</p>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
-                <p class="alert alert-info">{{ Session::get('info') }}</p>
+                <a href="{{ route('destination.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
             </div>
         </div>
-    @endif
-    <div class="row">
-        <div class="col-md-12">
-            <a href="{{ route('destination.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-bordered">
-                <div id="table-container" class="panel-body">
-                    @include('admin.destinations.table')       
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-bordered">
+                    <div id="table-container" class="panel-body">
+                        @include('admin.destinations.table')       
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     </div>
 </div>
 
