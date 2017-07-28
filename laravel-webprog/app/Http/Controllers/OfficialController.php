@@ -113,10 +113,27 @@ class OfficialController extends Controller
      * @param  \App\Official  $official
      * @return \Illuminate\Http\Response
      */
-    public function edit(Official $official)
+    public function edit(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+
+            $official = Official::findOrFail($id);
+            $provinces = Province::all();
+            $municipalities = Municipality::all(); 
+            $title= "Edit Official Information";
+           return view('admin.officials.form')
+                ->with('provinces', $provinces)
+                ->with('municipalities', $municipalities)
+                ->with('official', $official)
+                ->with('title', $title)
+                ->with('type', "EDIT")
+                ->with('button_text', "Save Changes")
+                ->with('action', "btn-primary edit");
+        }else{
+            return redirect(route('official.index'));
+        }
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -125,9 +142,31 @@ class OfficialController extends Controller
      * @param  \App\Official  $official
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Official $official)
+    public function update(Request $request,Official  $official)
     {
-        //
+        if($request->ajax()){
+        $this->validate($request, [
+            'fkofficial_municipality' => 'required',
+            'fkofficial_province' => 'required',
+            'official_first' => 'required',
+            'official_last' => 'required'
+        ]);
+        $official = Official::find($request->input('id'));
+        $official->fkofficial_municipality = $request->input('fkofficial_municipality');
+        $official->fkofficial_province = $request->input('fkofficial_province');
+        $official->official_first = $request->input('official_first');
+        $official->official_middle = $request->input('official_middle');
+        $official->official_last = $request->input('official_last');
+
+
+        $official->update();
+        //$post->tags()->detach();
+        //$post->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
+        //$post->tags()->sync($request->input('tags') === null ? [] : $request->input('tags'));
+        return redirect()->route('official.index')->with('info', 'Official Info edited for: ' . $request->input('official_first'));
+        }else{
+            return redirect(route('official.index'));
+        }
     }
 
     /**
@@ -136,8 +175,19 @@ class OfficialController extends Controller
      * @param  \App\Official  $official
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Official $official)
+    public function destroy(Request $request, $id)
     {
-        //
+        $official = Official::findOrFail($id);
+        $official = $official->destroy($id)
+            ? [
+                    'message'    => "Successfully deleted official",
+                    'alert' => 'success',
+            ]
+            : [
+                    'message'    => "Sorry it appears there was a problem deleting this official",
+                    'alert' => 'error',
+            ];
+
+        return response()->json($official);
     }
 }
