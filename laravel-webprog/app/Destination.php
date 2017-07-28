@@ -8,5 +8,5 @@ class Destination extends Model
 {
 		protected $primaryKey = 'destinations_id';
 	  protected $softDelete = true; 
-     protected $fillable = ['dname', 'dlocation', 'ddesc'];
+     protected $fillable = ['fkdestination_barangays','dname', 'dlocation', 'ddesc'];
 }
