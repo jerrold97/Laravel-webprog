@@ -62,7 +62,7 @@
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
-                 <li class="active"><a href="#home">Home</a></li>
+                 <li class="active"><a href="{{route('about')}}">Home</a></li>
                  <li ><a href="{{route('about')}}">About</a></li>
                  <li ><a href="#works">Works</a></li>
                  <li ><a href="#partners">Partners</a></li>

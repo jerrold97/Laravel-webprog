@@ -39,7 +39,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'website'], function(){
-	Route::get('index','WebController@index');
+	Route::get('index','WebController@index')->name('home');;
 	Route::get('about','WebController@about')->name('about');
 });
 
