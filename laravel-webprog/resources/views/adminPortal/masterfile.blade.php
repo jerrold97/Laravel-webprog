@@ -55,13 +55,13 @@
 			<li><a href="{{route('admin.index')}}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 			<li><a href="#products" data-toggle="collapse"><span class="glyphicon glyphicon-th-large"></span> Province</a>
 				<ul class="nav collapse" id="products">
-					<li><a href="{{route('admin.destinations')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Destinations</a></li>
-					<li><a href="{{route('admin.destinations')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Barangays</a></li>
-					<li><a href="{{route('admin.destinations')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> City</a></li>
+					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Destinations</a></li>
+					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Barangays</a></li>
+					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> City</a></li>
 					
 				</ul>
 			</li>
-			<li><a href="add_sales.html"><span class="glyphicon glyphicon-download-alt"></span> Region Officials</a></li>
+			<li><a href="{{route('official.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Region Officials</a></li>
 
 			<li><a href="#purchases" data-toggle="collapse"><span class="glyphicon glyphicon-import"></span> Areas</a>
 				<ul class="nav collapse" id="purchases">
