@@ -14,7 +14,6 @@ class CreateBarangaysTable extends Migration
     public function up()
     {
         Schema::create('barangays', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('barangays_id');
             $table->integer('fkbarangays_municipalities')->unsigned();
             $table->foreign('fkbarangays_municipalities')->references('municipality_id')->on('municipalities');
