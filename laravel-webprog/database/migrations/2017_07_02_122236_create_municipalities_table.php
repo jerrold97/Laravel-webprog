@@ -14,7 +14,6 @@ class CreateMunicipalitiesTable extends Migration
     public function up()
     {
         Schema::create('municipalities', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('municipality_id');
             $table->integer('fkmunicipality_provinces')->unsigned();;
             $table->foreign('fkmunicipality_provinces')->references('provinces_id')->on('provinces');
