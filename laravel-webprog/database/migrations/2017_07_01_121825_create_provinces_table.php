@@ -14,7 +14,6 @@ class CreateProvincesTable extends Migration
     public function up()
     {
         Schema::create('provinces', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('provinces_id');
             $table->text('province');
             $table->text('capital');
