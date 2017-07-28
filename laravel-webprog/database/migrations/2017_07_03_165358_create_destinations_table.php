@@ -17,9 +17,9 @@ class CreateDestinationsTable extends Migration
             $table->increments('destinations_id');
             $table->integer('fkdestination_barangays')->unsigned();
             $table->foreign('fkdestination_barangays')->references('barangays_id')->on('barangays');
-            $table->string('dname');
-            $table->string('dlocation');
-            $table->string('ddesc');
+            $table->string('dname',45);
+            $table->string('dlocation',45);
+            $table->string('ddesc',45);
             $table->timestamps();
         });
     }
