@@ -13,23 +13,67 @@
     @endif
             <div class="modal-body">
                 <div class="form-group">
-                <div class="col-sm-2">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkofficial_municipality', 'Province', array('class' => 'form-label')); !!}
+                    </div>
 
-               {!!Form::label('dname', 'Destination Name', array('class' => 'form-label')); !!}
+                   <div class="col-sm-10">
+                   <select name="fkofficial_province" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                        @foreach($provinces as $province)
+                        <option  value="{{ $province->provinces_id }}">{{$province->province}}</option>
+                        @endforeach
+                    </select>
+                   </div>
                </div>
-               <div class="col-sm-10">
-               {!!Form::text('dname', null, array(
-                'class' => 'form-control', 
-                'id' => 'dname',
-                'placeholder'=>'Destination Name', 
-                'required' => true, 
-                'maxlength' => 15)); !!}
-               </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkofficial_municipality', 'Municipality', array('class' => 'form-label')); !!}
+                    </div>
+
+                   <div class="col-sm-10">
+                   <select name="fkofficial_municipality" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                        @foreach($municipalities as $municipality)
+                        <option  value="{{ $municipality->municipality_id }}">{{$municipality->municipality}}</option>
+                        @endforeach
+                    </select>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkdestination_barangays', 'Barangay', array('class' => 'form-label')); !!}
+                    </div>
+
+                   <div class="col-sm-10">
+                   <select name="fkdestination_barangays" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                        @foreach($barangays as $barangay)
+                        <option  value="{{ $barangay->barangays_id }}">{{$barangay->barangay_name}}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                   <div class="col-sm-2">
+                   {!!Form::label('dname', 'Destination Name', array('class' => 'form-label')); !!}
+                   </div>
+
+                   <div class="col-sm-10">
+                   {!!Form::text('dname', null, array(
+                    'class' => 'form-control', 
+                    'id' => 'dname',
+                    'placeholder'=>'Destination Name', 
+                    'required' => true, 
+                    'maxlength' => 15)); !!}
+                   </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-2">
                     {!!Form::label('dlocation', 'Location', array('class' => 'form-label')); !!}
                     </div>
+
                    <div class="col-sm-10">
                    {!!Form::text('dlocation', null, array(
                     'class' => 'form-control', 
@@ -39,18 +83,20 @@
                     'maxlength' => 15)); !!}
                     </div>
                 </div>
+
                 <div class="form-group">
-                <div class="col-sm-2">
-                {!!Form::label('ddesc', 'Description', array('class' => 'form-label')); !!}
-                </div>
-                <div class="col-sm-10">
-               {!!Form::text('ddesc', null, array(
-                'class' => 'form-control', 
-                'id' => 'ddesc',
-                'placeholder'=>'Description', 
-                'required' => true, 
-                'maxlength' => 15)); !!}
-                </div>
+                    <div class="col-sm-2">
+                    {!!Form::label('ddesc', 'Description', array('class' => 'form-label')); !!}
+                    </div>
+
+                    <div class="col-sm-10">
+                   {!!Form::text('ddesc', null, array(
+                    'class' => 'form-control', 
+                    'id' => 'ddesc',
+                    'placeholder'=>'Description', 
+                    'required' => true, 
+                    'maxlength' => 15)); !!}
+                    </div>
                 </div>
 
             </div>

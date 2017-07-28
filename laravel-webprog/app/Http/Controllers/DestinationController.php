@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Destination;
+use App\Province;
+use App\Municipality;
+use App\Barangay;
 use Illuminate\Http\Request;
 use Alert;
 class DestinationController extends Controller
@@ -36,7 +39,13 @@ class DestinationController extends Controller
     public function create()
     {
         //$tags = Tag::all();
-        return view('admin.destinations.form')  
+        $provinces = Province::all();
+        $municipalities = Municipality::all();
+        $barangays = Barangay::all();
+        return view('admin.destinations.form')
+                    ->with('provinces', $provinces)
+                    ->with('municipalities', $municipalities)
+                    ->with('barangays', $barangays)
                     ->with('type', "CREATE")
                     ->with('title', "ADD")
                     ->with('action', 'btn-success add')
@@ -53,11 +62,13 @@ class DestinationController extends Controller
     {
         if($request->ajax()){
         $this->validate($request, [
+            'fkdestination_barangays' => 'required',
             'dname' => 'required',
             'dlocation' => 'required',
             'ddesc' => 'required'
         ]);
         $destination = new Destination([
+            'fkdestination_barangays' => $request->input('fkdestination_barangays'),
             'dname' => $request->input('dname'),
             'dlocation' => $request->input('dlocation'),
             'ddesc' => $request->input('ddesc')
@@ -83,8 +94,14 @@ class DestinationController extends Controller
     {
         if($request->ajax()) {
             $destination = Destination::findOrFail($id);
+            $provinces = Province::all();
+            $municipalities = Municipality::all(); 
+            $barangays = Barangay::all();
             $title = "Destination";
            return view('admin.destinations.form')
+                ->with('provinces', $provinces)
+                ->with('municipalities', $municipalities)
+                ->with('barangays', $barangays)
                 ->with('destination', $destination)
                 ->with('title', $title)
                 ->with('type', "SHOW")
@@ -106,9 +123,14 @@ class DestinationController extends Controller
         if($request->ajax()) {
 
             $destination = Destination::findOrFail($id);
-            
+            $provinces = Province::all();
+            $municipalities = Municipality::all(); 
+            $barangays = Barangay::all();
             $title= "Edit Destination Information";
            return view('admin.destinations.form')
+                ->with('provinces', $provinces)
+                ->with('municipalities', $municipalities)
+                ->with('barangays', $barangays)
                 ->with('destination', $destination)
                 ->with('title', $title)
                 ->with('type', "EDIT")
@@ -130,11 +152,13 @@ class DestinationController extends Controller
     {
         if($request->ajax()){
         $this->validate($request, [
+            'fkdestination_barangays' => 'required',
             'dname' => 'required',
             'dlocation' => 'required',
             'ddesc' => 'required'
         ]);
         $destination = Destination::find($request->input('id'));
+        $destination->fkdestination_barangays = $request->input('fkdestination_barangays');
         $destination->dname = $request->input('dname');
         $destination->dlocation = $request->input('dlocation');
         $destination->ddesc = $request->input('ddesc');
