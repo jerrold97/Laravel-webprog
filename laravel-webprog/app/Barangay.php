@@ -8,5 +8,5 @@ class Barangay extends Model
 {
 		protected $primaryKey = 'barangays_id';
 	  protected $softDelete = true; 
-     protected $fillable = ['barangay_name', 'barangay_name'];
+     protected $fillable = ['barangay_name', 'barangay_desc'];
 }
