@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['prefix' => 'admin'], function(){
+	Route::get('/','AdminController@index')->name('admin.index');
 
 	Route::resource('province', 'ProvinceController');
 	Route::get('/province-table/', 'ProvinceController@table')->name('province.table');
@@ -43,7 +44,4 @@ Route::group(['prefix' => 'website'], function(){
 	Route::get('about','WebController@about')->name('about');
 });
 
-Route::group(['prefix' => 'adminportal'], function(){
-	Route::get('index','AdminController@index')->name('admin.index');
-	Route::get('/destinations','AdminController@destinations')->name('admin.destinations');
-});
+
