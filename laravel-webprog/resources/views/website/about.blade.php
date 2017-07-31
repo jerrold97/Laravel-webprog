@@ -1,5 +1,13 @@
-@extends('website/web_masterfile')
-
+@extends('website/web_masterfile')z
+@section('style')
+  <style>
+      #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+      }
+    </style>
+@endsection
 @section('content')
 <div id="home">
 <!-- Slider Starts -->
@@ -8,45 +16,65 @@
 </div>
 
 
-
-
-
-
-
-
-
+<div class="jumbotron text-center">
+  <h1>Welcome to Bicol Region!</h1>
+        <p>Bicol is a region in the Philippines encompassing the southern part of Luzon Island and nearby island provinces. Caramoan, a peninsula in the east, is dotted with caves, limestone cliffs and white-sand beaches. Nearby, Catanduanes Island has mountains, waterfalls and coral reefs. Donsol, in the west, is home to whale sharks. The region’s active volcanoes include Bulusan Volcano and Mayon Volcano.</p>
+      
+</div>
+<div class="well btn btn-primary wowload fadeInLeft"><h2>Brief History</h2><hr></div>
+<div class="container-fluid spacer">
+  <div class="col-md-8 wowload fadeInLeft" style="font-size: 17; padding-left:100px">
+    <p>
+      The Bicol region was known as Ibalon, variously interpreted to derive form ibalio, "to bring to the other side"; ibalon, "people from the other side" or "people who are hospitable and give visitors gifts to bring home"; or as a corruption of Gibal-ong, a sitio of Magallanes, Sorsogon where the Spaniards first landed in 1567. The Bicol River was first mentioned in Spanish Documents in 1572. The region was also called Los Camarines after the huts found by the Spaniards in Camalig, Albay. No prehistoric animal fossils have been discovered in Bicol and the peopling of the region remains obscure. The Aeta from Camarines Sur to Sorsogon strongly suggest that aborigines lived there long ago, but earliest evidence is of middle to late Neolithic life.
+    </p>
+    <p>
+      A barangay (village) system was in existence by 1569. Records show no sign of Islamic rule nor any authority surpassing the datu (chieftain). Precolonial leadership was based on strength, courage, and intelligence. The native seemed apolitical. Thus the datu's influence mattered most during crises like wars. Otherwise, early Bicol society remained family centered, and the leader was the head of the family.
+    </p>
+    <p>
+      The Spanish influence in Bicol resulted mainly from the efforts of Augustinian and Franciscan Spanish missionaries. The first churches in Bicol, the San Francisco Church, and the Naga Cathedral, both in Naga, along with the Holy Cross Parish in Nabua, Camarines Sur, are instituted by the Holy Order of the Franciscans. One of the oldest dioceses in the Philippines, the Archdiocese of Caceres, was also instituted in the Bicol Region. During this time, Bicol was dotted by many astilleros (shipyards) which were focused on constructing Manila Galleons from the local hardwood forests.
+    </p>
+  </div>
+  <div class="col-md-4 wowload fadeRight">
+    <a class="thumbnail"><img src="/images/cagsawa.png" alt="Cagsawa"/></a>
+    <p>
+      The Cagsawa Ruins are the remnants of a 16th-century Franciscan church, the Cagsawa church. It was built in 1587 but was burned down by the marauding Dutch in 1636. However, it was reconstructed again in 1724 by Fr. Francisco Blanco.
+    </p>
+  </div>
+</div>
+<div class="well btn btn-primary wowload fadeInLeft"><h2>Geography</h2><hr></div>
+<div class="container">
+  <div class="col-md-8">
+    <div id="map"></div>
+  </div>
+  
+  <div class="col-md-4">
+    <p>The Bicol Region comprises the southern part of Luzon, the largest island in the Philippine archipelago. The total land area is 5.9% of the total land area of the country. Around 69.3% of the total land area is alienable and disposable while the remaining 30.7% is public forest areas.</p>
+  </div>
+</div>
+<br>
+  <br>
 <!-- Cirlce Starts -->
-<div id="about"  class="container spacer about">
-<h2 class="text-center wowload fadeInUp">Bicol Region - Endless Discoveries</h2>  
-  <div class="row">
-  <div class="col-sm-6 wowload fadeInLeft">
-    <h4><i class="fa fa-camera-retro"></i> Introduction </h4>
-    <p>Creative digital agency for sleek and sophisticated solutions for mobile, websites and software designs, lead by passionate and uber progressive team that lives and breathes design. Creative digital agency for sleek and sophisticated solutions for mobile, websites and software designs.</p>
-    
-
-  </div>
-  <div class="col-sm-6 wowload fadeInRight">
-  <img src="/images/map.png" alt="banner">
-  </div>
-  </div>
-
+<div class="well btn btn-primary wowload fadeInUp"><h2>Provinces</h2><hr></div>
+<div  class="container about">
   <div class="services">
-  <h3 class="text-center wowload fadeInUp">Services</h3>
-  <ul class="row text-center list-inline  wowload bounceInUp">
+  <ul class="row list-inline text-center wowload bounceInUp">
       <li>
-            <span><i class="fa fa-camera-retro"></i><b>Photography</b></span>
+            <span><i class="fa fa-camera-retro"></i><b><a href="">Camarines Norte</a></b></span>
         </li>
         <li>
-            <span><i class="fa fa-cube"></i><b>Studio</b></span>
+            <span><i class="fa fa-cube"></i><b><a href="">Camarines Norte</a></b></span>
         </li>
         <li>
-            <span><i class="fa fa-graduation-cap"></i><b>Trainings</b></span>
+            <span><i class="fa fa-graduation-cap"></i><b><a href="">Camarines Sur</a></b></span>
         </li>
         <li>
-            <span><i class="fa fa-umbrella"></i><b>Travel</b></span>
+            <span><i class="fa fa-umbrella"></i><b><a href="">Catanduanes</a></b></span>
         </li>        
         <li>
-            <span><i class="fa fa-heart-o"></i><b>Wedding</b></span>
+            <span><i class="fa fa-heart-o"></i><b><a href="">Masbate</a></b></span>
+        </li>
+        <li>
+            <span><i class="fa fa-heart-o"></i><b><a href="">Sorsogon</a></b></span>
         </li>
     </ul>
   </div>
@@ -54,162 +82,6 @@
 <!-- #Cirlce Ends -->
 
 
-<!-- works -->
-<div id="works"  class=" clearfix grid"> 
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/1.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Nature</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/1.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/2.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Events</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/2.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/3.jpg" alt="img01"/>
-        <figcaption>
-            <h2>music</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/3.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/4.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Vintage</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/4.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/5.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Typers</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/5.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-     
-     <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/6.jpg" alt="img01"/>
-        <figcaption>
-            <h2>hotel</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/6.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/7.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Chinese</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/7.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/8.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Dicrap</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/8.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/9.jpg" alt="img01"/>
-        <figcaption>
-            <h2>Coffee</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/9.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/10.jpg" alt="img01"/>
-        <figcaption>
-            <h2>cameras</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="images/portfolio/10.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/11.jpg" alt="img01"/>
-        <figcaption>
-            <h2>design</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/11.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp">
-        <img src="/images/portfolio/12.jpg" alt="img01"/>
-        <figcaption>
-            <h2>studio</h2>
-            <p>Lily likes to play with crayons and pencils<br>
-            <a href="/images/portfolio/12.jpg" title="1" data-gallery>View more</a></p>            
-        </figcaption>
-    </figure>
-    
-
-     
-</div>
-<!-- works -->
-
-
-<div id="partners" class="container spacer ">
-  <h2 class="text-center  wowload fadeInUp">Some of our happy clients</h2>
-  <div class="clearfix">
-    <div class="col-sm-6 partners  wowload fadeInLeft">
-         <img src="/images/partners/1.jpg" alt="partners">
-         <img src="/images/partners/2.jpg" alt="partners">
-         <img src="/images/partners/3.jpg" alt="partners">
-         <img src="/images/partners/4.jpg" alt="partners">
-    </div>
-    <div class="col-sm-6">
-
-
-    <div id="carousel-testimonials" class="carousel slide testimonails  wowload fadeInRight" data-ride="carousel">
-    <div class="carousel-inner">  
-      <div class="item active animated bounceInRight row">
-      <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="/images/team/1.jpg" width="100" class="img-circle img-responsive"></div>
-      <div  class="col-xs-10">
-      <p> I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. </p>      
-      <span>Angel Smith - <b>eshop Canada</b></span>
-      </div>
-      </div>
-      <div class="item  animated bounceInRight row">
-      <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="/images/team/2.jpg" width="100" class="img-circle img-responsive"></div>
-      <div  class="col-xs-10">
-      <p>No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
-      <span>John Partic - <b>Crazy Pixel</b></span>
-      </div>
-      </div>
-      <div class="item  animated bounceInRight row">
-      <div class="animated slideInLeft  col-xs-2"><img alt="portfolio" src="/images/team/3.jpg" width="100" class="img-circle img-responsive"></div>
-      <div  class="col-xs-10">
-      <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue.</p>
-      <span>Harris David - <b>Jet London</b></span>
-      </div>
-      </div>
-  </div>
-
-   <!-- Indicators -->
-    <ol class="carousel-indicators">
-    <li data-target="#carousel-testimonials" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-testimonials" data-slide-to="1"></li>
-    <li data-target="#carousel-testimonials" data-slide-to="2"></li>
-    </ol>
-    <!-- Indicators -->
-  </div>
-
-
-
-    </div>
-  </div>
 
 
 <!-- team -->
@@ -267,21 +139,21 @@
 
 
 <!-- About Starts -->
-<div class="highlight-info">
+<div class="highlight-info" style="background-color: gray">
 <div class="overlay spacer">
 <div class="container">
 <div class="row text-center  wowload fadeInDownBig">
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-smile-o  fa-5x"></i><h4>24 Clients</h4>
+  <i class="fa fa-smile-o  fa-5x"></i><h4>Foods</h4>
   </div>
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-rocket  fa-5x"></i><h4>75 Projects</h4>
+  <i class="fa fa-rocket  fa-5x"></i><h4>Locals</h4>
   </div>
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-cloud-download  fa-5x"></i><h4>454 Downloads</h4>
+  <i class="fa fa-cloud-download  fa-5x"></i><h4>Culture</h4>
   </div>
   <div class="col-sm-3 col-xs-6">
-  <i class="fa fa-map-marker fa-5x"></i><h4>2 Offices</h4>
+  <i class="fa fa-map-marker fa-5x"></i><h4>People</h4>
   </div>
 </div>
 </div>
@@ -315,3 +187,19 @@
 </div>
 <!--Contact Ends-->
 @endsection
+<script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrTeJ80nSMBPl69HEW7jz2iDri9johzjM&callback=initMap">
+</script>
