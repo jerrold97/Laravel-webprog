@@ -147,6 +147,7 @@
                     url: url,
                     data: data,
                     success: function(data) {
+                        console.log(data);
                         $('#modal').modal('hide');
                         loadTable();
                     },
