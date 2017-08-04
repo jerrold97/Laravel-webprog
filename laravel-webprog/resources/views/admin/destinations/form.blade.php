@@ -19,57 +19,71 @@
 
                    <div class="col-sm-10 prov">
                    <select name="fkofficial_province" id="fkofficial_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
-                   <option selected="selected" value="">Select</option>
                         @foreach($provinces as $province)
                         <option  value="{{ $province->provinces_id }}">{{$province->province}}</option>
                         @endforeach
                     </select>
                    </div>
                </div>
-               
+               @if($type == "CREATE")
                 <div class="form-group">
                     <div class="col-sm-2">
                     {!!Form::label('fkofficial_municipality', 'Municipality', array('class' => 'form-label')); !!}
                     </div>
 
                    <div class="col-sm-10">
-
-                   @if($type == "CREATE")
                    <select name="fkofficial_municipality" id="fkofficial_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
                         
                     </select>
-                    @elseif($type == "EDIT")
+                    </div>
+                </div>
 
-                    <select name="fkofficial_municipality" id="fkofficial_municipality" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                @elseif($type == "EDIT")
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkofficial_municipality', 'Municipality', array('class' => 'form-label')); !!}
+                    </div>
+
+                   <div class="col-sm-10">
+                   <select name="fkofficial_municipality" id="fkofficial_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
                         @foreach($municipalities as $municipality)
                         <option value="{{$municipality->municipality_id }}">{{$municipality->municipality}}</option>
                         @endforeach
                     </select>
-
-                    @endif
                     </div>
                 </div>
-               
-                         
+                @endif
+
+                @if($type == "CREATE")
                 <div class="form-group">
                     <div class="col-sm-2">
                     {!!Form::label('fkdestination_barangays', 'Barangay', array('class' => 'form-label')); !!}
                     </div>
-                    @if($type == "CREATE")
+
                    <div class="col-sm-10">
-                   <select name="fkdestination_barangays" id="fkdestination_barangays" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                   <select id="fkdestination_barangays" name="fkdestination_barangays" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
 
                     </select>
-                    @elseif($type == "EDIT")
-                   <select name="fkdestination_barangays" id="fkdestination_barangays" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                    </div>
+                </div>
+                @elseif($type == "EDIT")
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkdestination_barangays', 'Barangay', array('class' => 'form-label')); !!}
+                    </div>
+
+                   <div class="col-sm-10">
+                   <select id="fkdestination_barangays" name="fkdestination_barangays" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
                         @foreach($barangays as $barangay)
                         <option  value="{{ $barangay->barangays_id }}">{{$barangay->barangay_name}}</option>
                         @endforeach
                     </select>
-                    @endif
                     </div>
                 </div>
-                
+                @endif
+
+
+
                 <div class="form-group">
                    <div class="col-sm-2">
                    {!!Form::label('dname', 'Destination Name', array('class' => 'form-label')); !!}
