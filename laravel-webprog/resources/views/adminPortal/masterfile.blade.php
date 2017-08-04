@@ -30,7 +30,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			
-				<a href="#" class="navbar-brand">Inventory</a>
+				<a href="#" class="navbar-brand">Bicol Region</a>
 			
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -48,21 +48,24 @@
 	<div class="col-md-2 noPadding">
 		<ul class="navbar navbar-inverse nav sidebar">
 			<li><a href="{{route('admin.index')}}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
-			<li><a href="#products" data-toggle="collapse"><span class="glyphicon glyphicon-th-large"></span> Province</a>
+			<li><a href="#products" data-toggle="collapse"><span class="glyphicon glyphicon-th-large"></span> Region</a>
 				<ul class="nav collapse" id="products">
-					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Destinations</a></li>
+					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Province</a></li>
+					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> City/Municipality</a></li>
 					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Barangays</a></li>
-					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> City</a></li>
+					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Destinations</a></li>
+
+
 					
 				</ul>
 			</li>
 			<li><a href="{{route('official.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Region Officials</a></li>
 
-			<li><a href="{{route('article.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Articles</a></li>
+			<li><a href="{{route('article.index')}}"><span class="glyphicon glyphicon-file"></span> Articles</a></li>
 
 			<li><a href="{{route('event.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Events</a></li>
 
-			<li><a href="#people" data-toggle="collapse"><span class="glyphicon glyphicon-user"></span> Events</a>
+{{-- 			<li><a href="#people" data-toggle="collapse"><span class="glyphicon glyphicon-user"></span> Events</a>
 				<ul class="nav collapse" id="people">
 					<li><a href="client_list.html"><div class="col-md-1"></div><span class="glyphicon glyphicon-user"></span> Authors</a></li>
 					<li><a href="supplier_list.html"><div class="col-md-1"></div><span class="glyphicon glyphicon-user"></span> Blogers</a></li>
@@ -76,7 +79,7 @@
 					<li><a href="#"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> ---------</a></li>
 				</ul>
 			</li>
-			<li><a href="reports.html"><span class="glyphicon glyphicon-file"></span> Reports</a></li>
+			<li><a href="reports.html"><span class="glyphicon glyphicon-file"></span> Reports</a></li> --}}
 		</ul>
 	</div>
 	
