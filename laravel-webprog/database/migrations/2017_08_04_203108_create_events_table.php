@@ -14,7 +14,11 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('event_id');
+            $table->string('event_name', 45);
+            $table->text('event_desc');
+            $table->integer('fkevent_municipality')->unsigned();
+            $table->foreign('fkevent_municipality')->references('municipality_id')->on('municipalities');
             $table->timestamps();
         });
     }
@@ -26,6 +30,9 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
+        Schema::table('events', function(Blueprint $table) {
+            $table->dropForeign(['fkevent_municipality']);
+        });
         Schema::dropIfExists('events');
     }
 }
