@@ -14,31 +14,45 @@
             <div class="modal-body">
                 <div class="form-group">
                     <div class="col-sm-2">
-                    {!!Form::label('fkofficial_municipality', 'Province', array('class' => 'form-label')); !!}
+                    {!!Form::label('fkofficial_province', 'Province', array('class' => 'form-label')); !!}
                     </div>
 
-                   <div class="col-sm-10">
-                   <select name="fkofficial_province" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                   <div class="col-sm-10 prov">
+                   <select name="fkofficial_province" id="fkofficial_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
                         @foreach($provinces as $province)
                         <option  value="{{ $province->provinces_id }}">{{$province->province}}</option>
                         @endforeach
                     </select>
                    </div>
                </div>
-
+               @if($type == "CREATE")
                 <div class="form-group">
                     <div class="col-sm-2">
                     {!!Form::label('fkofficial_municipality', 'Municipality', array('class' => 'form-label')); !!}
                     </div>
 
                    <div class="col-sm-10">
-                   <select name="fkofficial_municipality" class=""  data-size="auto"  data-width="100%" data-live-search="true">
+                   <select name="fkofficial_municipality" id="fkofficial_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                        
+                    </select>
+                    </div>
+                </div>
+
+                @elseif($type == "EDIT")
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkofficial_municipality', 'Municipality', array('class' => 'form-label')); !!}
+                    </div>
+
+                   <div class="col-sm-10">
+                   <select name="fkofficial_municipality" id="fkofficial_municipality" class=""  data-size="auto"  data-width="100%" data-live-search="true">
                         @foreach($municipalities as $municipality)
-                        <option  value="{{ $municipality->municipality_id }}">{{$municipality->municipality}}</option>
+                        <option value="{{$municipality->municipality_id }}">{{$municipality->municipality}}</option>
                         @endforeach
                     </select>
                     </div>
                 </div>
+                @endif
 
                 <div class="form-group">
                     <div class="col-sm-2">
