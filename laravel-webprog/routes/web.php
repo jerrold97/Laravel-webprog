@@ -29,13 +29,17 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('destination', 'DestinationController');
 	Route::get('/destination/create/{province}', 'DestinationController@getMunicipality')->name('destination.getMunicipality');
-	//Route::get('/destination/create/get-barangay-list','DestinationController@getBarangay')->name('destination.getBarangay');
 	Route::get('/destination/create/{province}/{municipality}', 'DestinationController@getBarangay')->name('destination.getBarangay');
-	//Route::get('/destination/create/get-barangay-list', 'DestinationController@getBarangay')->name('destination.getBarangay');
 	Route::get('/destination-table/', 'DestinationController@table')->name('destination.table');
 
 	Route::resource('official', 'OfficialController');
 	Route::get('/official-table/', 'OfficialController@table')->name('official.table');
+
+	Route::resource('event', 'EventController');
+	Route::get('/event-table/', 'EventController@table')->name('event.table');
+
+	Route::resource('article', 'Articlecontroller');
+	Route::get('/article-table/', 'Articlecontroller@table')->name('article.table');
 
 
 });

@@ -34,11 +34,6 @@
 			
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><button class="btn btn-danger">Alert</button></a></li>
-					<li><a href="#"><button class="btn btn-success">New Items</button></a></li>
-					<li><a href="#"><button class="btn btn-primary">Out of Stock</button></a></li>
-					<li><a href="#"><button class="btn btn-info">New Clients</button></a></li>
-					<li><a href="#"><button class="btn btn-warning">New Suppliers</button></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="btn btn-default">Alert <span class="caret"></span></button></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Profile</a></li>
@@ -63,13 +58,11 @@
 			</li>
 			<li><a href="{{route('official.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Region Officials</a></li>
 
-			<li><a href="#purchases" data-toggle="collapse"><span class="glyphicon glyphicon-import"></span> Areas</a>
-				<ul class="nav collapse" id="purchases">
-					<li><a href="purchases_list.html"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Province</a></li>
-					<li><a href="add_purchases.html"><div class="col-md-1"></div><span class="glyphicon glyphicon-download-alt"></span> Municipalities</a></li>
-				</ul>
-			</li>
-			<li><a href="#people" data-toggle="collapse"><span class="glyphicon glyphicon-user"></span> People</a>
+			<li><a href="{{route('article.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Articles</a></li>
+
+			<li><a href="{{route('event.index')}}"><span class="glyphicon glyphicon-download-alt"></span> Events</a></li>
+
+			<li><a href="#people" data-toggle="collapse"><span class="glyphicon glyphicon-user"></span> Events</a>
 				<ul class="nav collapse" id="people">
 					<li><a href="client_list.html"><div class="col-md-1"></div><span class="glyphicon glyphicon-user"></span> Authors</a></li>
 					<li><a href="supplier_list.html"><div class="col-md-1"></div><span class="glyphicon glyphicon-user"></span> Blogers</a></li>

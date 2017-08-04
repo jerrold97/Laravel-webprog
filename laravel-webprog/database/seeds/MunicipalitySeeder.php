@@ -110,12 +110,98 @@ class MunicipalitySeeder extends Seeder
         ]);
 
         $municipality->save();
-
+//2
         $municipality = new \App\Municipality([
-        	'fkmunicipality_provinces' => "1",
-        	'municipality' => 'Tiwi'
+        	'fkmunicipality_provinces' => "2",
+        	'municipality' => 'Basud'
         ]);
 
         $municipality->save();
+
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Capalonga'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Daet'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Tiwi'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Jose Panganiban'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Labo'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Mercedes'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Paracale'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'San Lorenzo Ruiz'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'San Vicente'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Santa Elena'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Talisay'
+        ]);
+
+        $municipality->save();
+
+        $municipality = new \App\Municipality([
+            'fkmunicipality_provinces' => "2",
+            'municipality' => 'Vinzons'
+        ]);
+
+        $municipality->save();
+
     }
 }
