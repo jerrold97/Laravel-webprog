@@ -14,7 +14,11 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('article_id');
+            $table->string('article_name', 45);
+            $table->text('article_desc');
+            $table->integer('fkarticle_municipalities')->unsigned();
+            $table->foreign('fkarticle_municipalities')->references('municipality_id')->on('municipalities');
             $table->timestamps();
         });
     }
@@ -26,6 +30,9 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
+        Schema::table('articles', function(Blueprint $table) {
+            $table->dropForeign(['fkarticle_municipalities']);
+        });
         Schema::dropIfExists('articles');
     }
 }
