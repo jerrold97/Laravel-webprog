@@ -66,7 +66,35 @@
 
             // set up jQuery with the CSRF token, or else post routes will fail
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+            $(document).on('change','#fkofficial_province', function(e) {
+            
+                console.log(e);
+                // var url = $(this).attr('action');
+                // var cat_id = e.target.value;
+                // $.get('/admin/destination/create/?fkofficial_province=' + fkofficial_province, function(data){
+                //     $('#fkofficial_municipality').empty();
+                //     $.each(data, function(index,subcatObj){
+                //         $('#fkofficial_municipality').append('<option  value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+                //     });
+                // });
 
+                var province = e.target.value;
+                console.log(province);
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province,
+                    success: function(data) {
+                        console.log("success");
+                         $('#fkofficial_municipality').empty();
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj.municipality);
+                            $('#fkofficial_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+                        });
+                    }
+                });
+            });
             //OPEN MODALS
 
             $('#table-container').on('click', '.delete', function (e) {
