@@ -29,8 +29,9 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('destination', 'DestinationController');
 	Route::get('/destination/create/{province}', 'DestinationController@getMunicipality')->name('destination.getMunicipality');
+	//Route::get('/destination/create/get-barangay-list','DestinationController@getBarangay')->name('destination.getBarangay');
 	Route::get('/destination/create/{province}/{municipality}', 'DestinationController@getBarangay')->name('destination.getBarangay');
-
+	//Route::get('/destination/create/get-barangay-list', 'DestinationController@getBarangay')->name('destination.getBarangay');
 	Route::get('/destination-table/', 'DestinationController@table')->name('destination.table');
 
 	Route::resource('official', 'OfficialController');
