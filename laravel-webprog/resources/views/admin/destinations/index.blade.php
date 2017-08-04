@@ -66,18 +66,9 @@
 
             // set up jQuery with the CSRF token, or else post routes will fail
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-            $(document).on('change','#fkofficial_province', function(e) {
-            
-                console.log(e);
-                // var url = $(this).attr('action');
-                // var cat_id = e.target.value;
-                // $.get('/admin/destination/create/?fkofficial_province=' + fkofficial_province, function(data){
-                //     $('#fkofficial_municipality').empty();
-                //     $.each(data, function(index,subcatObj){
-                //         $('#fkofficial_municipality').append('<option  value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
-                //     });
-                // });
 
+            $(document).on('change','#fkofficial_province', function(e) {
+                console.log(e);
                 var province = e.target.value;
                 console.log(province);
                 $.ajax({
@@ -86,11 +77,35 @@
                     success: function(data) {
                         console.log("success");
                          $('#fkofficial_municipality').empty();
+                         $("#fkofficial_municipality").append('<option>Select</option>');
                          console.log(data);
                         $.each(data, function(index,subcatObj){
                             console.log(index);
                             console.log(subcatObj.municipality);
                             $('#fkofficial_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+                        });
+                    }
+                });
+            });
+
+            $(document).on('change','#fkofficial_municipality', function(e) {
+                console.log(e);
+                //var municipality = e.target.value;
+                var municipality = $(this).val();
+                var province = document.getElementById('fkofficial_municipality').value;
+                console.log(province);
+                console.log(municipality);
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province +"/"+municipality,
+                    success: function(data) {
+                        console.log("success");
+                         $('#fkdestination_barangays').empty();
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj);
+                             $('#fkdestination_barangays').append('<option  value="'+subcatObj.barangays_id+'">'+subcatObj.barangay_name+'</option>');
                         });
                     }
                 });
