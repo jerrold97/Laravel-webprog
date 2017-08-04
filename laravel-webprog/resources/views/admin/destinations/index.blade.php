@@ -77,6 +77,7 @@
                     success: function(data) {
                         console.log("success");
                          $('#fkofficial_municipality').empty();
+                         $('#fkdestination_barangays').empty();
                          $("#fkofficial_municipality").append('<option>Select</option>');
                          console.log(data);
                         $.each(data, function(index,subcatObj){
