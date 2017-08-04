@@ -34,10 +34,23 @@ class DestinationController extends Controller
 
     public function getMunicipality(Request $request){
         if($request->ajax()){
-            $municipality_id = $request->province;
-            $municipalities = Municipality::where('fkmunicipality_provinces', $municipality_id)->get();
+            //$municipality_id = $request->province;
+            $municipalities = Municipality::where('fkmunicipality_provinces', $request->province)->get();
             //dd($municipality_id);
             return response()->json($municipalities);
+        }
+        else {
+            return redirect(route('clients.index'));
+        }
+    }
+
+    public function getBarangay(Request $request){
+        if($request->ajax()){
+            //$barangay_id = $request->municipality;
+            //dd("AAAA");
+            $barangays = Barangay::where('fkbarangays_municipalities', $request->municipality)->get();
+            //dd($municipality_id);
+            return response()->json($barangays);
         }
         else {
             return redirect(route('clients.index'));
