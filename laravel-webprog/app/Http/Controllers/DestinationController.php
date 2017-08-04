@@ -31,6 +31,18 @@ class DestinationController extends Controller
             return redirect(route('clients.index'));
         }
     }
+
+    public function getMunicipality(Request $request){
+        if($request->ajax()){
+            $municipality_id = $request->province;
+            $municipalities = Municipality::where('fkmunicipality_provinces', $municipality_id)->get();
+            //dd($municipality_id);
+            return response()->json($municipalities);
+        }
+        else {
+            return redirect(route('clients.index'));
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -40,8 +52,10 @@ class DestinationController extends Controller
     {
         //$tags = Tag::all();
         $provinces = Province::all();
-        $municipalities = Municipality::all();
-        $barangays = Barangay::all();
+        //$municipalities = Municipality::where('fkmunicipality_provinces', 1)->get();
+        //$barangays = Barangay::all();
+        $municipalities = [];
+        $barangays = [];
         return view('admin.destinations.form')
                     ->with('provinces', $provinces)
                     ->with('municipalities', $municipalities)
