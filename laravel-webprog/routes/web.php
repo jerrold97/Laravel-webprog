@@ -21,12 +21,16 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('/province-table/', 'ProvinceController@table')->name('province.table');
 
 	Route::resource('municipality', 'MunicipalityController');
+
 	Route::get('/municipality-table/', 'MunicipalityController@table')->name('municipality.table');
 
 	Route::resource('barangay', 'BarangayController');
 	Route::get('/barangay-table/', 'BarangayController@table')->name('barangay.table');
 
 	Route::resource('destination', 'DestinationController');
+	Route::get('/destination/create/{province}', 'DestinationController@getMunicipality')->name('destination.getMunicipality');
+	Route::get('/destination/create/{province}/{municipality}', 'DestinationController@getBarangay')->name('destination.getBarangay');
+
 	Route::get('/destination-table/', 'DestinationController@table')->name('destination.table');
 
 	Route::resource('official', 'OfficialController');
