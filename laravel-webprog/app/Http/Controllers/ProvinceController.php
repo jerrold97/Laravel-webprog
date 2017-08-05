@@ -20,7 +20,7 @@ class ProvinceController extends Controller
 
     public function table(Request $request){
         if($request->ajax()){
-            $provinces = Province::all();
+            $provinces = Province::all()->paginate(10);
             return view('admin.provinces.table')->with('provinces', $provinces); 
         }
         else {
@@ -45,11 +45,11 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        $request->capital;
+        
     }
     public function save(Request $request)
     {
-        $request->capital;
+        
     }
     /**
      * Display the specified resource.
