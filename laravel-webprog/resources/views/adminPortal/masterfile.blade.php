@@ -50,8 +50,8 @@
 			<li><a href="{{route('admin.index')}}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
 			<li><a href="#products" data-toggle="collapse"><span class="glyphicon glyphicon-th-large"></span> Region</a>
 				<ul class="nav collapse" id="products">
-					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Province</a></li>
-					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> City/Municipality</a></li>
+					<li><a href="{{route('province.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Province</a></li>
+					<li><a href="{{route('municipality.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> City/Municipality</a></li>
 					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Barangays</a></li>
 					<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="glyphicon glyphicon-list"></span> Destinations</a></li>
 
