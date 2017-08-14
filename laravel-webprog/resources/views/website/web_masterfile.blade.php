@@ -62,7 +62,7 @@
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
-                 <li class="active"><a href="{{route('about')}}">Home</a></li>
+                 <li ><a href="{{route('home')}}">Home</a></li>
                  <li ><a href="{{route('about')}}">About</a></li>
                  <li ><a href="#works">Works</a></li>
                  <li ><a href="#partners">Partners</a></li>
@@ -129,6 +129,7 @@ Copyright 2014 Cyrus Creative Studio. All rights reserved.
 
 <!-- custom script -->
 <script src="/assets/script.js"></script>
+<script type="text/javascript" src="/js/parallax.min.js"></script>
 
 </body>
 </html>
