@@ -91,7 +91,7 @@
         <figcaption>
             <h2>{{$destination->dname}}</h2>
             <p>{{$destination->ddesc}}<br>
-            <a href="/images/portfolio/1.jpg" title="1" data-gallery>View more</a></p>            
+            <a href="{{route('destinations')}}">View more</a></p>            
         </figcaption>
     </figure>
   @endforeach

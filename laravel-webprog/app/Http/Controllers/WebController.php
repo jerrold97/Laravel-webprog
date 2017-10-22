@@ -17,6 +17,6 @@ class WebController extends Controller
     }
 
     public function destinations(){
-    	return view('website.Destination');
+    	return view('website.destination');
     }
 }
