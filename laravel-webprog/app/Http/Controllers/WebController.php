@@ -15,4 +15,8 @@ class WebController extends Controller
     public function about(){
     	return view('website.about');
     }
+
+    public function destinations(){
+    	return view('website.Destination');
+    }
 }
