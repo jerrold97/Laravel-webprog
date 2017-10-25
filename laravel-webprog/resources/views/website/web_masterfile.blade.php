@@ -64,8 +64,8 @@
               <ul class="nav navbar-nav navbar-right">
                  <li ><a href="{{route('home')}}">Home</a></li>
                  <li ><a href="{{route('about')}}">About</a></li>
-                 <li ><a href="#works">Works</a></li>
-                 <li ><a href="#partners">Partners</a></li>
+                 <li ><a href="#works">Province</a></li>
+                 <li ><a href="{{url('forums')}}">Forum</a></li>
                  <li ><a href="#contact">Contact</a></li>
               </ul>
             </div>
