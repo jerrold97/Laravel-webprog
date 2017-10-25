@@ -15,8 +15,8 @@ class CreateOfficialsTable extends Migration
     {
         Schema::create('officials', function (Blueprint $table) {
             $table->increments('official_id');
-            $table->integer('fkofficial_municipality')->unsigned();
-            $table->foreign('fkofficial_municipality')->references('municipality_id')->on('municipalities');
+            // $table->integer('fkofficial_municipality')->unsigned();
+            // $table->foreign('fkofficial_municipality')->references('municipality_id')->on('municipalities');
             $table->integer('fkofficial_province')->unsigned();
             $table->foreign('fkofficial_province')->references('provinces_id')->on('provinces');
             $table->string('official_first',45);
