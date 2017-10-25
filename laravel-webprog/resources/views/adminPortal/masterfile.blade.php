@@ -18,6 +18,7 @@
 			height: 300px;
 		}
 	</style>
+	@yield('css')
 </head>
 <body>
 <div>
@@ -89,7 +90,7 @@
 
 	@yield('modals')
 	@yield('scripts')
-	@yield('vue-scripts')
+	
 	</div>
 	</div>
 	
@@ -98,5 +99,6 @@
 	
 	<!-- bootstrap js -->
 	<script src="/assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
+	@yield('js')
 </body>
 </html>
