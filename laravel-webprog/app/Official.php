@@ -8,7 +8,7 @@ class Official extends Model
 {
 	 protected $primaryKey = 'official_id';
 	 protected $softDelete = true; 
-     protected $fillable = ['fkofficial_municipality', 'fkofficial_province', 'official_first', 'official_middle', 'official_last'];
+     protected $fillable = ['fkofficial_province', 'official_first', 'official_middle', 'official_last'];
      
     public function fullName()
     {
