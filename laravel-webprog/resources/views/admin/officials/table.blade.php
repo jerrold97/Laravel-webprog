@@ -2,7 +2,6 @@
 <thead>
     <tr>
 		<th>Province</th>
-        <th>Municipality/City</th>
         <th>Name</th>
       <th class="no-sort sorting_disabled actions">Actions</th>
     </tr>
@@ -10,8 +9,7 @@
 <tbody>
 	@foreach($officials as $official)
     <tr>
-        <td>{{ $official->fkofficial_municipality }}</td>
-        <td>{{ $official->fkofficial_province}}</td>
+        <td>{{ $official->province->province}}</td>
         <td>{{ $official->fullName()}}</td>
         <td class="">
             <div class="delete-modal btn-sm btn-danger pull-right delete" data-id="{{$official->official_id}}">
