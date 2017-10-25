@@ -58,13 +58,13 @@ class OfficialController extends Controller
         if($request->ajax()){
 
         $this->validate($request, [
-            'fkofficial_municipality' => 'required',
+            
             'fkofficial_province' => 'required',
             'official_first' => 'required',
             'official_last' => 'required'
         ]);
         $official = new Official([
-            'fkofficial_municipality' => $request->input('fkofficial_municipality'),
+
             'fkofficial_province' => $request->input('fkofficial_province'),
             'official_first' => $request->input('official_first'),
             'official_middle' => $request->input('official_middle'),
@@ -146,13 +146,13 @@ class OfficialController extends Controller
     {
         if($request->ajax()){
         $this->validate($request, [
-            'fkofficial_municipality' => 'required',
+
             'fkofficial_province' => 'required',
             'official_first' => 'required',
             'official_last' => 'required'
         ]);
         $official = Official::find($request->input('id'));
-        $official->fkofficial_municipality = $request->input('fkofficial_municipality');
+    
         $official->fkofficial_province = $request->input('fkofficial_province');
         $official->official_first = $request->input('official_first');
         $official->official_middle = $request->input('official_middle');
