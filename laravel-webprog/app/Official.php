@@ -14,4 +14,8 @@ class Official extends Model
     {
         return $this->official_first.', '.$this->official_middle.' '.$this->official_last;
     }
+
+	public function province() {
+		return $this->belongsTo('App\Province', 'fkofficial_province', 'provinces_id');
+	}
 }
