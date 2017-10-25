@@ -46,8 +46,8 @@
 
                    <div class="col-sm-10">
                    <select name="fkofficial_municipality" id="fkofficial_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
-                        @foreach($municipalities as $municipality)
-                        <option value="{{$municipality->municipality_id }}">{{$municipality->municipality}}</option>
+                        @foreach($municipalities->where('fkmunicipality_provinces', $destination->barangay->municipality->province->provinces_id) as $municipality)
+                        <option value="{{$municipality->municipality_id }}" {{ $destination->barangay->municipality->municipality_id == $municipality->municipality_id ? 'selected="selected"' : '' }}>{{$municipality->municipality}}</option>
                         @endforeach
                     </select>
                     </div>
@@ -74,8 +74,8 @@
 
                    <div class="col-sm-10">
                    <select id="fkdestination_barangays" name="fkdestination_barangays" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
-                        @foreach($barangays as $barangay)
-                        <option  value="{{ $barangay->barangays_id }}">{{$barangay->barangay_name}}</option>
+                        @foreach($barangays->where('fkbarangays_municipalities', $destination->barangay->municipality->municipality_id) as $barangay)
+                        <option  value="{{ $barangay->barangays_id }}" {{ $destination->barangay->barangays_id == $barangay->barangays_id? 'selected="selected"' : '' }}>{{$barangay->barangay_name}}</option>
                         @endforeach
                     </select>
                     </div>
