@@ -90,7 +90,7 @@
 
 	@yield('modals')
 	@yield('scripts')
-	
+	@yield('vue-scripts')
 	</div>
 	</div>
 	
