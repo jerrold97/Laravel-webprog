@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        DevDojo\Chatter\ChatterServiceProvider::class,
         /*
          * Package Service Providers...
          */

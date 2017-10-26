@@ -1,4 +1,5 @@
 @extends('adminPortal.masterfile')
+@section('maintenance_title', 'Dashboard')
 @section('headscript')
 	<script>
 	

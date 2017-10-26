@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('maintenance_title', 'Barangays')
 @section('content')
 <div class="container" id="destindex">
     <div>

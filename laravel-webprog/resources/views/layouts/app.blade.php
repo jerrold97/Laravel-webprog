@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div>
@@ -80,6 +81,6 @@
         @yield('scripts')
         @yield('vue-scripts')
     </div>
-
+@yield('js')
 </body>
 </html>

@@ -1,34 +1,24 @@
 @extends('adminPortal.masterfile')
+@section('maintenance_title', 'Destinations')
 @section('content')
-<div class="col-md-10">
-    <div class="container" id="destindex">
-        <div>
-        @if(Session::has('info'))
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="alert alert-info">{{ Session::get('info') }}</p>
+
+<div id="destindex">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('destination.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <div id="table-container" class="panel-body">
+                    @include('admin.destinations.table')       
                 </div>
             </div>
-        @endif
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('destination.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div id="table-container" class="panel-body">
-                        @include('admin.destinations.table')       
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 
@@ -62,6 +52,7 @@
 
         $(document).ready(function () {
 
+            $("#dataTable").DataTable();
             //$('#dataTable').DataTable();
 
             // set up jQuery with the CSRF token, or else post routes will fail
@@ -265,7 +256,7 @@
                     success:function(data)
                     {
                         $('#table-container').html(data);
-                        //$('#dataTable').DataTable();
+                        $('#dataTable').DataTable();
                     }
                 });
             }

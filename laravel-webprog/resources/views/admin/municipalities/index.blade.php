@@ -1,4 +1,5 @@
 @extends('adminPortal.masterfile')
+@section('maintenance_title', 'Municipalities/Cities')
 @section('content')
 <div class="col-md-10">
     <div class="container" id="destindex">
