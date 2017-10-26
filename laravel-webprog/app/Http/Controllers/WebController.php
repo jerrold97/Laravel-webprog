@@ -12,11 +12,28 @@ class WebController extends Controller
     	$destinations = Destination::all();
     	return view('website.index')->with('destinations',$destinations);
     }
+
+    public function destinations(){
+    	return view('website.destination');
+    }
+    
+    public function provinces(){
+    	return view('website.provinces');
+    }
+
+    public function gallery(){
+    	return view('website.gallery');
+    }
+
     public function about(){
     	return view('website.about');
     }
 
-    public function destinations(){
-    	return view('website.destination');
+    public function updates(){
+    	return view('website.updates');
+    }
+
+    public function events(){
+    	return view('website.events');
     }
 }
