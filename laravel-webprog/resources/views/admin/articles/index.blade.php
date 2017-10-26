@@ -1,30 +1,21 @@
 @extends('adminPortal.masterfile')
+@section('maintenance_title', 'Articles')
 @section('content')
-<div class="col-md-10">
-    <div class="container" id="destindex">
-        <div>
-        @if(Session::has('info'))
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="alert alert-info">{{ Session::get('info') }}</p>
+
+<div id="destindex">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('article.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <div id="table-container" class="panel-body">
+                    @include('admin.articles.table')       
                 </div>
             </div>
-        @endif
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ route('article.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div id="table-container" class="panel-body">
-                        @include('admin.articles.table')       
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </div>
@@ -62,7 +53,7 @@
 
         $(document).ready(function () {
 
-            //$('#dataTable').DataTable();
+            $('#dataTable').DataTable();
 
             // set up jQuery with the CSRF token, or else post routes will fail
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
@@ -220,7 +211,7 @@
                     success:function(data)
                     {
                         $('#table-container').html(data);
-                        //$('#dataTable').DataTable();
+                        $('#dataTable').DataTable();
                     }
                 });
             }
