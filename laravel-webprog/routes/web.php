@@ -52,8 +52,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => '/'], function(){
 	Route::get('/','WebController@index')->name('home');
-	Route::get('about','WebController@about')->name('about');
 	Route::get('destinations','WebController@destinations')->name('destinations');
+	Route::get('provinces','WebController@provinces')->name('provinces');
+	Route::get('gallery','WebController@gallery')->name('gallery');
+	Route::get('about','WebController@about')->name('about');
+	Route::get('updates','WebController@updates')->name('updates');
+	Route::get('events','WebController@events')->name('events');
 });
 
 
