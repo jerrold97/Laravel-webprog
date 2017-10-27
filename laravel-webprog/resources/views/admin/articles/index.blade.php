@@ -55,6 +55,29 @@
 
             $('#dataTable').DataTable();
 
+            $(document).on('change','#fkarticle_province', function(e) {
+                console.log(e);
+                var province = e.target.value;
+                console.log("province",province);
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province,
+                    success: function(data) {
+                        console.log("success");
+                         $('#fkarticle_municipality').empty();
+                         // $('#fkdestination_barangays').empty();
+                         $("#fkarticle_municipality").append('<option>Select</option>');
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj.municipality);
+                            $('#fkarticle_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+                        });
+                    }
+                });
+            });
+
+
             // set up jQuery with the CSRF token, or else post routes will fail
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
