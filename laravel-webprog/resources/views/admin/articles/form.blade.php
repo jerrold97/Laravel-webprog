@@ -25,7 +25,18 @@
                 </select>
                </div>
                 </div>
-                @elseif($type == "EDIT")
+                <div class="form-group">
+                    <div class="col-sm-2">
+                    {!!Form::label('fkarticle_municipality', 'Municipality', array('class' => 'form-label')); !!}
+                    </div>
+
+                   <div class="col-sm-10">
+                   <select name="fkarticle_municipality" id="fkarticle_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                        
+                    </select>
+                    </div>
+                </div>
+                @else
                   <div class="form-group">
                       <div class="col-sm-2">
                       {!!Form::label('fkarticle_province', 'Province', array('class' => 'form-label')); !!}
@@ -38,21 +49,6 @@
                   </select>
                  </div>
                   </div>
-                @endif
-               @if($type == "CREATE")
-                <div class="form-group">
-                    <div class="col-sm-2">
-                    {!!Form::label('fkarticle_municipality', 'Municipality', array('class' => 'form-label')); !!}
-                    </div>
-
-                   <div class="col-sm-10">
-                   <select name="fkarticle_municipality" id="fkarticle_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
-                        
-                    </select>
-                    </div>
-                </div>
-
-                @elseif($type == "EDIT")
                 <div class="form-group">
                     <div class="col-sm-2">
                     {!!Form::label('fkarticle_municipality', 'Municipality', array('class' => 'form-label')); !!}
@@ -67,6 +63,7 @@
                     </div>
                 </div>
                 @endif
+
 
 
 
