@@ -248,7 +248,8 @@
             $('#delete_modal').on('hidden.bs.modal', function(e){
                 $('#delete_form')[0].action = '{{route('destination.destroy', '__id')}}';
             });
-                        function loadTable(){
+
+            function loadTable(){
                 $.ajax({
                     type: 'get',
                     url: "{{ route('destination.table') }}",
@@ -260,6 +261,20 @@
                     }
                 });
             }
+
+            function loadTableProvince(){
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('destination.table') }}'+"/" + id,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    }
+                });
+            }
+
         });
 
 </script>
