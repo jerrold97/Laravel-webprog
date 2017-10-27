@@ -12,12 +12,64 @@
         {!! Form::model($event, array ('id'=>'view_form', 'class'=>'form-horizontal', 'route'=>'event.index' )) !!}
     @endif
             <div class="modal-body">
-                <div class="form-group">
+                @if($type == "CREATE")
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                        {!!Form::label('fk_event_province', 'Province', array('class' => 'form-label')); !!}
+                        </div>
+                   <div class="col-sm-10">
+                   <select name="fk_event_province" id="fk_event_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                        @foreach($provinces as $province)
+                        <option  value="{{ $province->provinces_id }}">{{$province->province}}</option>
+                        @endforeach
+                    </select>
+                   </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                        {!!Form::label('fkevent_municipality', 'Municipality', array('class' => 'form-label')); !!}
+                        </div>
+
+                       <div class="col-sm-10">
+                       <select name="fkevent_municipality" id="fkevent_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                            
+                        </select>
+                        </div>
+                    </div>
+
+                @else
+                      <div class="form-group">
+                          <div class="col-sm-2">
+                          {!!Form::label('fk_event_province', 'Province', array('class' => 'form-label')); !!}
+                          </div>
+                     <div class="col-sm-10">
+                     <select name="fk_event_province" id="fk_event_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                          @foreach($provinces as $province)
+                          <option  value="{{ $province->provinces_id }}" {{ $event->municipality->province->provinces_id == $province->provinces_id ? 'selected="selected"' : '' }}>{{$province->province}}</option>
+                          @endforeach
+                      </select>
+                     </div>
+                      </div>
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                        {!!Form::label('fkevent_municipality', 'Municipality', array('class' => 'form-label')); !!}
+                        </div>
+
+                       <div class="col-sm-10">
+                       <select name="fkevent_municipality" id="fkevent_municipality" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                            @foreach($municipalities->where('fkmunicipality_provinces', $event->municipality->province->provinces_id) as $municipality)
+                            <option value="{{$municipality->municipality_id }}" {{ $event->municipality->municipality_id == $municipality->municipality_id ? 'selected="selected"' : '' }}>{{$municipality->municipality}}</option>
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
+                @endif
+{{--                 <div class="form-group">
                     <div class="col-sm-2">
-                    {!!Form::label('fkarticle_province', 'Province', array('class' => 'form-label')); !!}
+                    {!!Form::label('fk_event_province', 'Province', array('class' => 'form-label')); !!}
                     </div>
                <div class="col-sm-10">
-               <select name="fkarticle_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+               <select name="fk_event_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
                     @foreach($provinces as $province)
                     <option  value="{{ $province->provinces_id }}">{{$province->province}}</option>
                     @endforeach
@@ -36,7 +88,7 @@
                         @endforeach
                     </select>
                     </div>
-                </div>
+                </div> --}}
 
 
                 <div class="form-group">
