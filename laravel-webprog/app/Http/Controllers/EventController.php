@@ -91,7 +91,7 @@ class EventController extends Controller
     public function show(Request $request, $id)
     {
         if($request->ajax()) {
-            $event = Article::findOrFail($id);
+            $event = Event::findOrFail($id);
             $provinces = Province::all();
             $municipalities = Municipality::all();            
             $title = "Official";
