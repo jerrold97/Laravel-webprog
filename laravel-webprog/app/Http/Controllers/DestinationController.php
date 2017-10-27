@@ -32,6 +32,16 @@ class DestinationController extends Controller
         }
     }
 
+    public function tableProvince(Request $request){
+        if($request->ajax()){
+            // $destinations = Destination::where('fkdestination_barangays', );
+            return view('admin.destinations.table')->with('destinations', $destinations); 
+        }
+        else {
+            return redirect(route('clients.index'));
+        }
+    }
+
     public function getMunicipality(Request $request){
         if($request->ajax()){
             //$municipality_id = $request->province;
