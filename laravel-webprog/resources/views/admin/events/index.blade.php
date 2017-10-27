@@ -57,7 +57,28 @@
 
             // set up jQuery with the CSRF token, or else post routes will fail
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-
+            
+            $(document).on('change','#fk_event_province', function(e) {
+                console.log(e);
+                var province = e.target.value;
+                console.log("province",province);
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province,
+                    success: function(data) {
+                        console.log("success");
+                         $('#fkevent_municipality').empty();
+                         // $('#fkdestination_barangays').empty();
+                         $("#fkevent_municipality").append('<option>Select</option>');
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj.municipality);
+                            $('#fkevent_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+                        });
+                    }
+                });
+            });
             //OPEN MODALS
 
             $('#table-container').on('click', '.delete', function (e) {
