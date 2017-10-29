@@ -19,7 +19,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('province', 'ProvinceController');
 	Route::get('/province-table/', 'ProvinceController@table')->name('province.table');
-	Route::get('/province-table/{id}', 'ProvinceController@tableProvince')->name('province.tableProvince');
+	// Route::get('/province-table/{id}', 'ProvinceController@tableProvince')->name('province.tableProvince');
 
 	Route::resource('municipality', 'MunicipalityController');
 
@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('/destination/create/{province}', 'DestinationController@getMunicipality')->name('destination.getMunicipality');
 	Route::get('/destination/create/{province}/{municipality}', 'DestinationController@getBarangay')->name('destination.getBarangay');
 	Route::get('/destination-table/', 'DestinationController@table')->name('destination.table');
+	Route::get('/destination-table/{id}', 'DestinationController@tableProvince')->name('destination.tableProvince');
 
 	Route::resource('official', 'OfficialController');
 	Route::get('/official-table/', 'OfficialController@table')->name('official.table');
