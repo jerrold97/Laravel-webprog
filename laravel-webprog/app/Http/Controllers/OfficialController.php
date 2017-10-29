@@ -29,6 +29,21 @@ class OfficialController extends Controller
             return redirect(route('official.index'));
         }
     }
+
+    public function tableProvince(Request $request,$id){
+        if($request->ajax()){
+            
+            $municipality_id = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+
+            $officials = Official::whereIn('fkofficial_province', $municipality_id)->get();
+
+            return view('admin.officials.table')->with('officials', $officials);
+        }
+        else {
+            return redirect(route('official.index'));
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

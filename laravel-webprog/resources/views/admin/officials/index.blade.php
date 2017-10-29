@@ -6,6 +6,15 @@
     <div class="row">
         <div class="col-md-12">
             <a href="{{ route('official.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
+            <select id="query_province" class="form-control" name="timeliness" required>
+                <option value="0">All Provinces</option>
+                <option value="1">Albay</option>
+                <option value="2">Camarines Norte</option>
+                <option value="3">Camarines Sur</option>
+                <option value="4">Catanduanes</option>
+                <option value="5">Masbate</option>
+                <option value="6">Sorsogon</option>
+            </select>
         </div>
     </div>
     <hr>
@@ -203,7 +212,7 @@
             $('#delete_modal').on('hidden.bs.modal', function(e){
                 $('#delete_form')[0].action = '{{route('official.destroy', '__id')}}';
             });
-                        function loadTable(){
+            function loadTable(){
                 $.ajax({
                     type: 'get',
                     url: "{{ route('official.table') }}",
@@ -215,6 +224,31 @@
                     }
                 });
             }
+
+            $(document).on('change','#query_province', function(e) {
+                console.log(e);
+                var province = e.target.value;
+                console.log("change",province);
+                province == 0 ? loadTable() : loadTableProvince(province);
+                
+            });
+
+            //Load destinations where province == id
+            function loadTableProvince(id){
+                //var id = $('#id').val();
+                var query_municipality = $('#query_municipality').val();
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('official.table') }}'+"/" + id,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    }
+                });
+            }
+
         });
 
 </script>
