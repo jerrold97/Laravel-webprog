@@ -74,7 +74,9 @@ class DestinationController extends Controller
             
             // $barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
             // $destinations = Destination::whereIn('fkdestination_barangays', $barangays)->get();
-            // $destinations = Destination::where('fkdestination_barangays', );
+            
+            $destinations = Destination::where('fkdestination_barangays', $barangay)->get();
+           
             return view('admin.destinations.table')->with('destinations', $destinations); 
         }
         else {
