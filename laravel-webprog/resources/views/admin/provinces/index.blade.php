@@ -1,30 +1,19 @@
 @extends('adminPortal.masterfile')
 @section('maintenance_title', 'Provinces')
 @section('content')
-<div class="col-md-10">
-    <div class="container" id="destindex">
-        <div>
-        @if(Session::has('info'))
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="alert alert-info">{{ Session::get('info') }}</p>
+
+<div id="destindex">
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <div id="table-container" class="panel-body">
+                    @include('admin.provinces.table')        
                 </div>
             </div>
-        @endif
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div id="table-container" class="panel-body">
-                        @include('admin.provinces.table')       
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 
@@ -82,8 +71,9 @@
 <script>
 
         $(document).ready(function () {
+                $('#dataTable').DataTable();
 
-                        function loadTable(){
+                function loadTable(){
                 $.ajax({
                     type: 'get',
                     url: "{{ route('province.table') }}",
@@ -91,7 +81,7 @@
                     success:function(data)
                     {
                         $('#table-container').html(data);
-                        //$('#dataTable').DataTable();
+                        $('#dataTable').DataTable();
                     }
                 });
             }
