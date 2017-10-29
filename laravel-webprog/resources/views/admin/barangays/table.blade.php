@@ -1,19 +1,21 @@
 <table id="dataTable" class="table table-hover">
 <thead>
     <tr>
-		<th>Province Name</th>
-        <th>Capital</th>
+		<th>Barangay Name</th>
+        <th>Barangay Description</th>
+        <th>Municipality/City</th>
       <th class="no-sort sorting_disabled actions">Actions</th>
     </tr>
 </thead>
 <tbody>
-	@foreach($destinations as $destination)
+	@foreach($barangays as $barangay)
     <tr>
-        <td>{{ $destination->dname }}</td>
-        
+        <td>{{ $barangay->barangay_name }}</td>
+        <td>{{ $barangay->barangay_desc }}</td>
+        <td>{{ $barangay->municipality->municipality }}</td>
         <td class="">
-           <a href="{{ route('destination.show',$destination->destinations_id)}}"> <div class="delete-modal btn-sm btn-danger pull-right delete" data-id="{{$destination->destinations_id}}">
-                <i class="voyager-eye"></i> Destinations
+           <a href="{{ route('barangay.show',$barangay->barangays_id)}}"> <div class="delete-modal btn-sm btn-info pull-right delete" data-id="{{$barangay->barangays_id}}">
+                <i class="voyager-eye"></i> Information
             </div></a>
         </td>
     </tr>
