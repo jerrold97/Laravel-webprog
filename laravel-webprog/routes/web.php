@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('province', 'ProvinceController');
 	Route::get('/province-table/', 'ProvinceController@table')->name('province.table');
+    Route::get('/province/{id}/barangays', 'ProvinceController@showBarangays')->name('province.showBarangays');
 	// Route::get('/province-table/{id}', 'ProvinceController@tableProvince')->name('province.tableProvince');
 
 	Route::resource('municipality', 'MunicipalityController');
