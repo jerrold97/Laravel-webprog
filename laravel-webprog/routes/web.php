@@ -40,9 +40,12 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('official', 'OfficialController');
 	Route::get('/official-table/', 'OfficialController@table')->name('official.table');
+	Route::get('/official-table/{id}', 'OfficialController@tableProvince')->name('official.tableProvince');
 
 	Route::resource('event', 'EventController');
 	Route::get('/event-table/', 'EventController@table')->name('event.table');
+	Route::get('/event-table/{id}', 'EventController@tableProvince')->name('event.tableProvince');
+	Route::get('/event/query/{province}/{municipality}', 'EventController@tableMunicipality')->name('event.tableMunicipality');
 
 	Route::resource('article', 'Articlecontroller');
 	Route::get('/article-table/', 'Articlecontroller@table')->name('article.table');
