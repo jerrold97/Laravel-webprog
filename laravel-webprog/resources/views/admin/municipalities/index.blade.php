@@ -1,30 +1,28 @@
 @extends('adminPortal.masterfile')
 @section('maintenance_title', 'Municipalities/Cities')
 @section('content')
-<div class="col-md-10">
-    <div class="container" id="destindex">
-        <div>
-        @if(Session::has('info'))
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="alert alert-info">{{ Session::get('info') }}</p>
+
+<div id="destindex">
+    <hr>
+    <select id="query_province" class="form-control" name="timeliness" required>
+        <option value="0">All Provinces</option>
+        <option value="1">Albay</option>
+        <option value="2">Camarines Norte</option>
+        <option value="3">Camarines Sur</option>
+        <option value="4">Catanduanes</option>
+        <option value="5">Masbate</option>
+        <option value="6">Sorsogon</option>
+    </select>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-bordered">
+                <div id="table-container" class="panel-body">
+                    @include('admin.municipalities.table')        
                 </div>
             </div>
-        @endif
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-bordered">
-                    <div id="table-container" class="panel-body">
-                        @include('admin.municipalities.table')       
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 
@@ -57,16 +55,40 @@
 <script>
 
         $(document).ready(function () {
-
-                        function loadTable(){
+                $('#dataTable').DataTable();
+            function loadTable(){
                 $.ajax({
                     type: 'get',
-                    url: "{{ route('province.table') }}",
+                    url: "{{ route('municipality.table') }}",
                     dataType: 'html',
                     success:function(data)
                     {
                         $('#table-container').html(data);
-                        //$('#dataTable').DataTable();
+                        $('#dataTable').DataTable();
+                    }
+                });
+
+            }
+            $(document).on('change','#query_province', function(e) {
+                console.log(e);
+                var province = e.target.value;
+                console.log("change",province);
+                province == 0 ? loadTable() : loadTableProvince(province);
+                
+            });
+
+            //Load destinations where province == id
+            function loadTableProvince(id){
+                //var id = $('#id').val();
+                var query_municipality = $('#query_municipality').val();
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('municipality.table') }}'+"/" + id,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
                     }
                 });
             }
