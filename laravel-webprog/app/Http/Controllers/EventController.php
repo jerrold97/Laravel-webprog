@@ -30,6 +30,45 @@ class EventController extends Controller
         }
     }
 
+    public function tableProvince(Request $request,$id){
+        if($request->ajax()){
+            
+            $municipality_id = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+            $municipalities = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+
+            //$barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
+            $events = Event::whereIn('fkevent_municipality', $municipality_id)->get();
+
+            return view('admin.events.table')->with('events', $events);
+        }
+        else {
+            return redirect(route('article.index'));
+        }
+    }
+
+    public function tableMunicipality(Request $request, $province, $municipality){
+
+        if($request->ajax()) {
+           
+            if($municipality == 0) {
+                $municipality_id = Municipality::where('fkmunicipality_provinces', $province)->pluck('municipality_id');
+                //$barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
+                $events = Event::whereIn('fkevent_municipality', $municipality_id)->get();
+            }
+            else {
+                //$barangays = Barangay::where('fkbarangays_municipalities', $municipality)->pluck('barangays_id');
+                $events = Event::where('fkevent_municipality', $municipality)->get();                
+            }
+
+            return view('admin.events.table')->with('events', $events);
+        }
+        else {
+            return redirect(route('article.index'));
+        }
+
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
