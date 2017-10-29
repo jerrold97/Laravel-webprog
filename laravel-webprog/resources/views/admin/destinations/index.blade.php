@@ -266,6 +266,7 @@
                 $('#delete_form')[0].action = '{{route('destination.destroy', '__id')}}';
             });
 
+            //loadTable - Destination::all():
             function loadTable(){
                 $.ajax({
                     type: 'get',
@@ -286,9 +287,12 @@
                 province == 0 ? loadTable() : loadTableProvince(province);
                 
             });
-            
+
+            //Load destinations where province == id
             function loadTableProvince(id){
                 //var id = $('#id').val();
+                var query_municipality = $('#query_municipality').val();
+                loadMunicipalities(id, query_municipality);
                 $.ajax({
                     type: 'get',
                     url: '{{ route('destination.table') }}'+"/" + id,
@@ -300,6 +304,124 @@
                     }
                 });
             }
+
+
+            function loadMunicipalities(province, municipality) {
+                selectMunicipalities(province, municipality);
+
+                    loadTableMunicipalities(province, municipality);
+                
+               
+            }
+
+            function selectMunicipalities(province, municipality)
+            {
+                //if first load municipality == undefined
+                console.log("Inside selectMunicipalities province", province);
+                console.log("Inside selectMunicipalities municipality", municipality);
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province,
+                    success: function(data) {
+                        console.log("success");
+                         $('#query_municipality').empty();
+                         $('#query_barangay').empty();
+                         $("#query_municipality").append('<option value="0">Show All</option>');
+                         //if first load - line of code to append a value in #query_municipality
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj.municipality);
+                            $('#query_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+                        });
+                    }
+                });
+            }
+
+            // function selectBarangays(province, municipality)
+            // {
+            //     //if first load municipality == undefined
+            //     console.log("Inside selectMunicipalities province", province);
+            //     console.log("Inside selectMunicipalities municipality", municipality);
+            //     $.ajax({
+            //         type: 'GET',
+            //         url: '{{ route("destination.index") }}' +"/create/" + province,
+            //         success: function(data) {
+            //             console.log("success");
+            //              $('#query_municipality').empty();
+            //              $('#query_barangay').empty();
+            //              $("#query_municipality").append('<option value="0">Show All</option>');
+
+            //              console.log(data);
+            //             $.each(data, function(index,subcatObj){
+            //                 console.log(index);
+            //                 console.log(subcatObj.municipality);
+            //                 $('#query_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+            //             });
+            //         }
+
+            //     });
+            // }
+
+            function loadTableMunicipalities(province, municipality) {
+                console.log("Inside loadTableMunicipalities province", province);
+                console.log("Inside loadTableMunicipalities municipality", municipality);
+                
+                if(municipality == null)
+                {
+                    console.log("null");
+                    municipality = 0;
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/query/" + province + "/" + municipality,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    },
+                    catch: function(data)
+                    {
+                        console.log("Error", data);
+                    }
+                });
+            }
+
+            $(document).on('change','#query_municipality', function(e) {
+                console.log(e);
+                var municipality = e.target.value;
+                var query_province = $('#query_province').val();
+                console.log("change municipality",municipality);
+                console.log("Query_province", query_province);
+                //municipality == 0 ? loadMunicipalities(province,municipality) : loadMunicipalities(province,municipality);
+                selectBarangays(query_province,municipality);
+                
+            });
+
+            function selectBarangays(province, municipality) {
+                console.log("Inside selectBarangays province", province);
+                console.log("Inside selectBarangays municipality", municipality);   
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province + "/" + municipality,
+                    success: function(data) {
+                        console.log("success");
+                         $('#query_barangay').empty();
+                         $("#query_barangay").append('<option value="0">Show All</option>');
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj);
+                             $('#query_barangay').append('<option  value="'+subcatObj.barangays_id+'">'+subcatObj.barangay_name+'</option>');
+                        });
+                    }
+                });        
+            }
+
+
 
         });
 
