@@ -268,6 +268,8 @@
 
             //loadTable - Destination::all():
             function loadTable(){
+                 $('#query_municipality').empty();
+                 $('#query_barangay').empty();
                 $.ajax({
                     type: 'get',
                     url: "{{ route('destination.table') }}",
