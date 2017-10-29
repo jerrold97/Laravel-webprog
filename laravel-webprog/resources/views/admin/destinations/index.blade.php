@@ -338,31 +338,6 @@
                 });
             }
 
-            // function selectBarangays(province, municipality)
-            // {
-            //     //if first load municipality == undefined
-            //     console.log("Inside selectMunicipalities province", province);
-            //     console.log("Inside selectMunicipalities municipality", municipality);
-            //     $.ajax({
-            //         type: 'GET',
-            //         url: '{{ route("destination.index") }}' +"/create/" + province,
-            //         success: function(data) {
-            //             console.log("success");
-            //              $('#query_municipality').empty();
-            //              $('#query_barangay').empty();
-            //              $("#query_municipality").append('<option value="0">Show All</option>');
-
-            //              console.log(data);
-            //             $.each(data, function(index,subcatObj){
-            //                 console.log(index);
-            //                 console.log(subcatObj.municipality);
-            //                 $('#query_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
-            //             });
-            //         }
-
-            //     });
-            // }
-
             function loadTableMunicipalities(province, municipality) {
                 console.log("Inside loadTableMunicipalities province", province);
                 console.log("Inside loadTableMunicipalities municipality", municipality);
@@ -398,8 +373,46 @@
                 console.log("Query_province", query_province);
                 //municipality == 0 ? loadMunicipalities(province,municipality) : loadMunicipalities(province,municipality);
                 selectBarangays(query_province,municipality);
+                loadTableMunicipalities(query_province,municipality);
                 
             });
+
+            $(document).on('change','#query_barangay', function(e) {
+                console.log(e);
+                var province = $('#query_province').val();
+                var municipality = $('#query_municipality').val();
+                var barangay = e.target.value;
+
+                console.log("change barangay",barangay);
+                console.log("Query_province", province);
+                //municipality == 0 ? loadMunicipalities(province,municipality) : loadMunicipalities(province,municipality);
+                //selectBarangays(query_province,municipality);
+                loadTableBarangays(province, municipality, barangay);
+                
+            });
+
+            function loadTableBarangays(province, municipality, barangay) {
+                console.log("Inside loadTableBarangays province", province);
+                console.log("Inside loadTableBarangays municipality", municipality);
+                console.log("Inside loadTableBarangays barangay", barangay);
+
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/query/" + province + "/" + municipality + "/" + barangay,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    },
+                    catch: function(data)
+                    {
+                        console.log("Error", data);
+                    }
+                });
+            }
 
             function selectBarangays(province, municipality) {
                 console.log("Inside selectBarangays province", province);
