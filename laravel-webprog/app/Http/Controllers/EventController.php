@@ -94,7 +94,7 @@ class EventController extends Controller
             $event = Event::findOrFail($id);
             $provinces = Province::all();
             $municipalities = Municipality::all();            
-            $title = "Official";
+            $title = "Event";
            return view('admin.events.form')
                 ->with('provinces', $provinces)
                 ->with('municipalities', $municipalities)

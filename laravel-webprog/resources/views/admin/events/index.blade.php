@@ -69,7 +69,7 @@
                         console.log("success");
                          $('#fkevent_municipality').empty();
                          // $('#fkdestination_barangays').empty();
-                         $("#fkevent_municipality").append('<option>Select</option>');
+                         $("#fkevent_municipality").append('<option disabled selected value>Select</option>');
                          console.log(data);
                         $.each(data, function(index,subcatObj){
                             console.log(index);

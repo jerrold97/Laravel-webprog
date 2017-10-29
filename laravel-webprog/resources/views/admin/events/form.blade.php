@@ -19,6 +19,7 @@
                         </div>
                    <div class="col-sm-10">
                    <select name="fk_event_province" id="fk_event_province" class="form-control"  data-size="auto"  data-width="100%" data-live-search="true">
+                        <option disabled selected value> Select Province </option>
                         @foreach($provinces as $province)
                         <option  value="{{ $province->provinces_id }}">{{$province->province}}</option>
                         @endforeach
