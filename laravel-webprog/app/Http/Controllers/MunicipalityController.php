@@ -15,14 +15,27 @@ class MunicipalityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($province_id){
-        $provinces=Province::all();
-        $municipalities = Municipality::where('fkmunicipality_provinces',$province_id)->get();
-        return view('admin.municipalities.index')->with('municipalities',$municipalities)->with('provinces',$provinces);
+    public function index(){
+        //$provinces= Province::all();
+        $municipalities = Municipality::all();
+        return view('admin.municipalities.index')->with('municipalities',$municipalities);
     }
-    public function table($province_id){
-        $municipalities = Municipality::where('fkmunicipality_provinces',$province_id)->get();
+
+    public function table(){
+        $municipalities = Municipality::all();
         return view('admin.municipalities.table')->with('municipalities',$municipalities);
+    }
+
+    public function tableProvince(Request $request,$id){
+        if($request->ajax()){
+            
+            $municipalities = Municipality::where('fkmunicipality_provinces', $id)->get();
+
+            return view('admin.municipalities.table')->with('municipalities', $municipalities);
+        }
+        else {
+            return redirect(route('municipality.index'));
+        }
     }
 
     /**
