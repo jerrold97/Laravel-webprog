@@ -32,8 +32,12 @@ class DestinationController extends Controller
         }
     }
 
-    public function tableProvince(Request $request){
+    public function tableProvince(Request $request,$id){
         if($request->ajax()){
+            
+            $municipality_id = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+            $barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
+            $destinations = Destination::whereIn('fkdestination_barangays', $barangays)->get();
             // $destinations = Destination::where('fkdestination_barangays', );
             return view('admin.destinations.table')->with('destinations', $destinations); 
         }
