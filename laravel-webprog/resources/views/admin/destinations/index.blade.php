@@ -6,6 +6,23 @@
     <div class="row">
         <div class="col-md-12">
             <a href="{{ route('destination.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
+            <select id="query_province" class="form-control" name="timeliness" required>
+                {{-- <option disabled selected value> -- Select an option -- </option> --}}
+                <option value="0">All Provinces</option>
+                <option value="1">Albay</option>
+                <option value="2">Camarines Norte</option>
+                <option value="3">Camarines Sur</option>
+                <option value="4">Catanduanes</option>
+                <option value="5">Masbate</option>
+                <option value="6">Sorsogon</option>
+            </select>
+            <select id="query_municipality" class="form-control" name="timeliness" required>
+
+            </select>
+            <select id="query_barangay" class="form-control" name="timeliness" required>
+                {{-- <option disabled selected value> -- Select an option -- </option> --}}
+
+            </select>
         </div>
     </div>
     <hr>
@@ -262,7 +279,16 @@
                 });
             }
 
-            function loadTableProvince(){
+            $(document).on('change','#query_province', function(e) {
+                console.log(e);
+                var province = e.target.value;
+                console.log("change",province);
+                province == 0 ? loadTable() : loadTableProvince(province);
+                
+            });
+            
+            function loadTableProvince(id){
+                //var id = $('#id').val();
                 $.ajax({
                     type: 'get',
                     url: '{{ route('destination.table') }}'+"/" + id,
