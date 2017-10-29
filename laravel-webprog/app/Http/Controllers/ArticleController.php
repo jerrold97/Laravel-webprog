@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Province;
 use App\Municipality;
+use App\Barangay;
+use App\Destination;
 use Illuminate\Http\Request;
 use App\Alert;
 class ArticleController extends Controller
@@ -30,22 +32,43 @@ class ArticleController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $provinces = Province::all();
-        $municipalities = Municipality::all();
-        return view('admin.articles.form')  
-                    ->with('provinces', $provinces)
-                    ->with('municipalities', $municipalities)
-                    ->with('type', "CREATE")
-                    ->with('title', "ADD")
-                    ->with('action', 'btn-success add')
-                    ->with('button_text', 'Add');
+    public function tableProvince(Request $request,$id){
+        if($request->ajax()){
+            
+            $municipality_id = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+            $municipalities = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+
+            //$barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
+            $articles = Article::whereIn('fkarticle_municipalities', $municipality_id)->get();
+
+            return view('admin.articles.table')->with('articles', $articles);
+        }
+        else {
+            return redirect(route('article.index'));
+        }
+    }
+
+    public function tableMunicipality(Request $request, $province, $municipality){
+
+        if($request->ajax()) {
+           
+            if($municipality == 0) {
+                $municipality_id = Municipality::where('fkmunicipality_provinces', $province)->pluck('municipality_id');
+                //$barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
+                $articles = Article::whereIn('fkarticle_municipalities', $municipality_id)->get();
+            }
+            else {
+                //$barangays = Barangay::where('fkbarangays_municipalities', $municipality)->pluck('barangays_id');
+                $articles = Article::where('fkarticle_municipalities', $municipality)->get();                
+            }
+
+            return view('admin.articles.table')->with('articles', $articles);
+        }
+        else {
+            return redirect(route('article.index'));
+        }
+
+
     }
 
     /**
@@ -94,7 +117,7 @@ class ArticleController extends Controller
             $article = Article::findOrFail($id);
             $provinces = Province::all();
             $municipalities = Municipality::all();            
-            $title = "Official";
+            $title = "Article";
            return view('admin.articles.form')
                 ->with('provinces', $provinces)
                 ->with('municipalities', $municipalities)
