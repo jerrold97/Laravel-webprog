@@ -226,10 +226,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-			<li><a href="{{route('province.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-location-arrow"></span> Province</a></li>
-			<li><a href="{{route('municipality.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-university"></span> City/Municipality</a></li>
-			<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-building-o"></span> Barangays</a></li>
-			<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-map-marker"></span> Destinations</a></li>
+      			<li><a href="{{route('province.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-location-arrow"></span> Province</a></li>
+      			<li><a href="{{route('municipality.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-university"></span> City/Municipality</a></li>
+      			<li><a href="{{route('barangay.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-building-o"></span> Barangays</a></li>
+      			<li><a href="{{route('destination.index')}}" id="destinations"><div class="col-md-1"></div><span class="fa fa-map-marker"></span> Destinations</a></li>
           </ul>
         </li>
 
