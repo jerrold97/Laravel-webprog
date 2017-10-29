@@ -7,7 +7,6 @@
         <div class="col-md-12">
             <a href="{{ route('article.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
             <select id="query_province" class="form-control" name="timeliness" required>
-                {{-- <option disabled selected value> -- Select an option -- </option> --}}
                 <option value="0">All Provinces</option>
                 <option value="1">Albay</option>
                 <option value="2">Camarines Norte</option>
@@ -320,7 +319,7 @@
                 var query_province = $('#query_province').val();
                 console.log("change municipality",municipality);
                 console.log("Query_province", query_province);
-                
+
                 loadTableMunicipalities(query_province,municipality);
                 
             });
