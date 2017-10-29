@@ -6,6 +6,19 @@
     <div class="row">
         <div class="col-md-12">
             <a href="{{ route('article.create') }}" class="btn btn-success add_modal"> @{{ message }}</a>
+            <select id="query_province" class="form-control" name="timeliness" required>
+                {{-- <option disabled selected value> -- Select an option -- </option> --}}
+                <option value="0">All Provinces</option>
+                <option value="1">Albay</option>
+                <option value="2">Camarines Norte</option>
+                <option value="3">Camarines Sur</option>
+                <option value="4">Catanduanes</option>
+                <option value="5">Masbate</option>
+                <option value="6">Sorsogon</option>
+            </select>
+            <select id="query_municipality" class="form-control" name="timeliness" required>
+
+            </select>
         </div>
     </div>
     <hr>
@@ -66,7 +79,7 @@
                         console.log("success");
                          $('#fkarticle_municipality').empty();
                          // $('#fkdestination_barangays').empty();
-                         $("#fkarticle_municipality").append('<option>Select</option>');
+                         $("#fkarticle_municipality").append('<option disabled selected value>Select</option>');
                          console.log(data);
                         $.each(data, function(index,subcatObj){
                             console.log(index);
@@ -226,7 +239,8 @@
             $('#delete_modal').on('hidden.bs.modal', function(e){
                 $('#delete_form')[0].action = '{{route('article.destroy', '__id')}}';
             });
-                        function loadTable(){
+
+            function loadTable(){
                 $.ajax({
                     type: 'get',
                     url: "{{ route('article.table') }}",
@@ -235,6 +249,129 @@
                     {
                         $('#table-container').html(data);
                         $('#dataTable').DataTable();
+                    }
+                });
+            }
+
+            $(document).on('change','#query_province', function(e) {
+                console.log(e);
+                var province = e.target.value;
+                console.log("change",province);
+                province == 0 ? loadTable() : loadTableProvince(province);
+                
+            });
+
+            //Load destinations where province == id
+            function loadTableProvince(id){
+                //var id = $('#id').val();
+                var query_municipality = $('#query_municipality').val();
+                loadMunicipalities(id, query_municipality);
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('article.table') }}'+"/" + id,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    }
+                });
+            }
+
+            function loadMunicipalities(province, municipality) {
+                selectMunicipalities(province, municipality);
+
+                loadTableMunicipalities(province, municipality);
+                
+            }
+
+            function loadTableMunicipalities(province, municipality) {
+                console.log("Inside loadTableMunicipalities province", province);
+                console.log("Inside loadTableMunicipalities municipality", municipality);
+                
+                if(municipality == null)
+                {
+                    console.log("null");
+                    municipality = 0;
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("article.index") }}' +"/query/" + province + "/" + municipality,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    },
+                    catch: function(data)
+                    {
+                        console.log("Error", data);
+                    }
+                });
+            }
+
+
+
+            $(document).on('change','#query_municipality', function(e) {
+                console.log(e);
+                var municipality = e.target.value;
+                var query_province = $('#query_province').val();
+                console.log("change municipality",municipality);
+                console.log("Query_province", query_province);
+                
+                loadTableMunicipalities(query_province,municipality);
+                
+            });
+
+            function selectMunicipalities(province, municipality)
+            {
+                //if first load municipality == undefined
+                console.log("Inside selectMunicipalities province", province);
+                console.log("Inside selectMunicipalities municipality", municipality);
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("destination.index") }}' +"/create/" + province,
+                    success: function(data) {
+                        console.log("success");
+                         $('#query_municipality').empty();
+                         $('#query_barangay').empty();
+                         $("#query_municipality").append('<option value="0">Show All</option>');
+                         //if first load - line of code to append a value in #query_municipality
+                         console.log(data);
+                        $.each(data, function(index,subcatObj){
+                            console.log(index);
+                            console.log(subcatObj.municipality);
+                            $('#query_municipality').append('<option  value="'+subcatObj.municipality_id+'">'+subcatObj.municipality+'</option>');
+                        });
+                    }
+                });
+            }
+
+            function loadTableMunicipalities(province, municipality) {
+                console.log("Inside loadTableMunicipalities province", province);
+                console.log("Inside loadTableMunicipalities municipality", municipality);
+                
+                if(municipality == null)
+                {
+                    console.log("null");
+                    municipality = 0;
+                }
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("article.index") }}' +"/query/" + province + "/" + municipality,
+                    dataType: 'html',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        $('#table-container').html(data);
+                        $('#dataTable').DataTable();
+                    },
+                    catch: function(data)
+                    {
+                        console.log("Error", data);
                     }
                 });
             }
