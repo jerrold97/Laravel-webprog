@@ -28,7 +28,7 @@ class DestinationController extends Controller
             return view('admin.destinations.table')->with('destinations', $destinations); 
         }
         else {
-            return redirect(route('clients.index'));
+            return redirect(route('destination.index'));
         }
     }
 
@@ -36,16 +36,51 @@ class DestinationController extends Controller
         if($request->ajax()){
             
             $municipality_id = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+            $municipalities = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+
             $barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
             $destinations = Destination::whereIn('fkdestination_barangays', $barangays)->get();
             // $destinations = Destination::where('fkdestination_barangays', );
             return view('admin.destinations.table')->with('destinations', $destinations); 
         }
         else {
-            return redirect(route('clients.index'));
+            return redirect(route('destination.index'));
         }
     }
 
+    public function tableMunicipality(Request $request, $province, $municipality){
+
+        if($request->ajax()){
+           
+            $barangays = Barangay::where('fkbarangays_municipalities', $municipality)->pluck('barangays_id');
+
+            $destinations = Destination::whereIn('fkdestination_barangays', $barangays)->get();
+
+            // $destinations = Destination::where('fkdestination_barangays', );
+            return view('admin.destinations.table')->with('destinations', $destinations); 
+        }
+        else {
+            return redirect(route('destination.index'));
+        }
+
+
+    }
+
+    public function tableBarangay(Request $request, $province, $municipality, $barangay){
+        if($request->ajax()){
+            
+            // $municipality_id = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+            // $municipalities = Municipality::where('fkmunicipality_provinces', $id)->pluck('municipality_id');
+            
+            // $barangays = Barangay::whereIn('fkbarangays_municipalities', $municipality_id)->pluck('barangays_id');
+            // $destinations = Destination::whereIn('fkdestination_barangays', $barangays)->get();
+            // $destinations = Destination::where('fkdestination_barangays', );
+            return view('admin.destinations.table')->with('destinations', $destinations); 
+        }
+        else {
+            return redirect(route('destination.index'));
+        }
+    }
     public function getMunicipality(Request $request){
         if($request->ajax()){
             //$municipality_id = $request->province;
@@ -54,7 +89,7 @@ class DestinationController extends Controller
             return response()->json($municipalities);
         }
         else {
-            return redirect(route('clients.index'));
+            return redirect(route('destination.index'));
         }
     }
 
@@ -67,7 +102,7 @@ class DestinationController extends Controller
             return response()->json($barangays);
         }
         else {
-            return redirect(route('clients.index'));
+            return redirect(route('destination.index'));
         }
     }
     /**
