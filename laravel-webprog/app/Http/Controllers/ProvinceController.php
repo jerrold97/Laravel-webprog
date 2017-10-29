@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Province;
-use Illuminate\Http\Request;
 use App\Municipality;
+use App\Barangay;
+use Illuminate\Http\Request;
+
 class ProvinceController extends Controller
 {
     /**
@@ -59,11 +61,17 @@ class ProvinceController extends Controller
      */
     public function show($id)
     {
-        $municipalities = Municipality::find($id)->get();
-
-        return view('admin.municipalities.index')->with('municipalities', $municipalities);
+        $municipalities = Municipality::where('fkmunicipality_provinces',$id)->get();
+        
+        return view('admin.provinces.municipalities.municipalities')->with('municipalities', $municipalities);
     }
 
+    public function showBarangays($id)
+    {
+        $barangays = Barangay::where('fkbarangays_municipalities',$id)->get();
+        
+        return view('admin.provinces.municipalities.barangays')->with('barangays', $barangays);
+    }
     /**
      * Show the form for editing the specified resource.
      *
