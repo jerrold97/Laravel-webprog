@@ -46,7 +46,8 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('article', 'Articlecontroller');
 	Route::get('/article-table/', 'Articlecontroller@table')->name('article.table');
-
+	Route::get('/article-table/{id}', 'Articlecontroller@tableProvince')->name('article.tableProvince');
+	Route::get('/article/query/{province}/{municipality}', 'Articlecontroller@tableMunicipality')->name('article.tableMunicipality');
 
 });
 Route::get('/shit',function(){
