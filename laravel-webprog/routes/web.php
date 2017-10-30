@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('barangay', 'BarangayController');
 	Route::get('/barangay-table/', 'BarangayController@table')->name('barangay.table');
-
+	Route::get('/barangay-table/{id}', 'BarangayController@tableProvince')->name('barangay.tableProvince');
 	Route::get('/barangay/query/{province}/{municipality}', 'BarangayController@tableMunicipality')->name('barangay.tableMunicipality');
 	Route::get('/barangay/query/{province}/{municipality}/{barangay}', 'BarangayController@tableBarangay')->name('barangay.tableBarangay');
 
