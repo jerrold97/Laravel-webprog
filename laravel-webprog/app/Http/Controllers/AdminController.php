@@ -3,13 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Destination;
+use App\Article;
+use App\Event;
+use App\User;
 use Illuminate\Http\Request;
 use Alert;
 
 class AdminController extends Controller
 {
     public function index(){
-    	return view('adminPortal.index');
+        $destination_number = Destination::all()->count();
+        $article_number = Article::all()->count();
+        $event_number = Event::all()->count();
+        $user_number = User::all()->count();
+    	return view('adminPortal.index')
+                    ->with('destination_number', $destination_number)
+                    ->with('article_number', $article_number)
+                    ->with('event_number', $event_number)
+                    ->with('user_number', $user_number);
     }
      public function destinations(Request $request){
 
