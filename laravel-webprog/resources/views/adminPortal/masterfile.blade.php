@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{{ asset('admin_template/dist/css/skins/_all-skins.min.css')}}">
   <link rel="stylesheet" type="text/css" href= "{{ asset('css/dataTables.min.css')}}">
   <link rel="stylesheet" type="text/css" href= "{{ asset('css/responsive.bootstrap.min.css')}}">
-
+  <link rel="stylesheet" type="text/css" href= "{{ asset('css/toastr.min.css')}}">
   <script type="text/javascript" src="/assets/jquery.js"></script>
   <script type="text/javascript" src="/assets/js/flot.js"></script>
   <script src="{{ asset('js/vue.js') }}"></script>
@@ -36,7 +36,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ route('admin.index') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>R</b>5</span>
       <!-- logo for regular state and mobile devices -->
@@ -506,5 +506,6 @@
 
     <script type="text/javascript" src= "{{ asset('js/dataTables.min.js') }}"></script>
     <script type="text/javascript" src= "{{ asset('js/dataTables.responsive.min.js') }}"></script>
+    <script type="text/javascript" src= "{{ asset('js/toastr.min.js') }}"></script>
 </body>
 </html>
