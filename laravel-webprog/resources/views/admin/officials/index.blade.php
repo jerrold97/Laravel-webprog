@@ -147,7 +147,13 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                        $('#modal').modal('hide');
+                       if(data.alert=='success'){
+                            $('#modal').modal('hide');
+                            toastr.success(data.message);
+                        }else {
+                            toastr.error(data.message);
+                        }
+                        console.log(data);
                         loadTable();
                     },
                     error: function (jqXHR, status, err) {
@@ -171,15 +177,14 @@
                     url: url,
                     data: data,
                     success: function(data) {
-                       // if(data.alert=='success'){
-                       //      $('#modal').modal('hide');
-                       //      toastr.success(data.message);
-                       //  }else {
-                       //      toastr.error(data.message);
-                       //  }
-
+                       if(data.alert=='success'){
+                            $('#modal').modal('hide');
+                            toastr.success(data.message);
+                        }else {
+                            toastr.error(data.message);
+                        }
+                        console.log(data);
                         loadTable();
-                        $('#modal').modal('hide');
                     },
                     error: function (jqXHR, status, err) {
                         console.log(err);
@@ -198,8 +203,14 @@
                     data: form_data,
                     dataType: 'json',
                     success: function(data) {
+                       if(data.alert=='success'){
+                            $('#delete_modal').modal('hide');
+                            toastr.success(data.message);
+                        }else {
+                            toastr.error(data.message);
+                        }
+                        console.log(data);
                         loadTable();
-                        $('#delete_modal').modal('hide');
                     },
                     error: function (jqXHR, status, err) {
                         // console.log(err);
