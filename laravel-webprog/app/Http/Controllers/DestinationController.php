@@ -148,26 +148,38 @@ class DestinationController extends Controller
     public function store(Request $request)
     {
         if($request->ajax()){
-        $this->validate($request, [
-            'fkdestination_barangays' => 'required',
-            'dname' => 'required',
-            'dlocation' => 'required',
-            'ddesc' => 'required'
-        ]);
-        $destination = new Destination([
-            'fkdestination_barangays' => $request->input('fkdestination_barangays'),
-            'dname' => $request->input('dname'),
-            'dlocation' => $request->input('dlocation'),
-            'ddesc' => $request->input('ddesc')
-        ]);
-        
-        $destination->save();
-        Alert::success('Good job!')->persistent("Close");
-        //$destination->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
-        return redirect()->route('destination.index')->with('info', 'Post created, Destination is: ' . $request->input('dname'));
-    }
-            else {
+
+            $this->validate($request, [
+                'fkdestination_barangays' => 'required',
+                'dname' => 'required',
+                'dlocation' => 'required',
+                'ddesc' => 'required'
+            ]);
+            $destination = new Destination([
+                'fkdestination_barangays' => $request->input('fkdestination_barangays'),
+                'dname' => $request->input('dname'),
+                'dlocation' => $request->input('dlocation'),
+                'ddesc' => $request->input('ddesc')
+            ]);
+            
+
+            $message = $destination->save() ? [
+                'message'   => "Successfully added destination",
+                'alert'     => 'success'
+            ]
+            : [
+                'message'    => "Sorry it appears there was a problem 
+                                adding this destination",
+                'alert' => 'error',
+            ];
+
+            return response()->json($message);
+
+        }
+        else {
+
             return redirect(route('destination.index'));
+
         }
     }
 
@@ -251,10 +263,22 @@ class DestinationController extends Controller
         $destination->ddesc = $request->input('ddesc');
 
         $destination->update();
+
+        $message = $destination->update() ? [
+            'message'   => "Successfully updated destination",
+            'alert'     => 'success'
+        ]
+        : [
+            'message'    => "Sorry it appears there was a problem 
+                            updating this destination",
+            'alert' => 'error',
+        ];
+
+        return response()->json($message);
         //$post->tags()->detach();
         //$post->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
         //$post->tags()->sync($request->input('tags') === null ? [] : $request->input('tags'));
-        return redirect()->route('destination.index')->with('info', 'Desination Info edited for: ' . $request->input('dname'));
+        //return redirect()->route('destination.index')->with('info', 'Desination Info edited for: ' . $request->input('dname'));
         }else{
             return redirect(route('destination.index'));
         }
@@ -269,16 +293,18 @@ class DestinationController extends Controller
     public function destroy(Request $request, $id)
     {
         $destination = Destination::findOrFail($id);
-        $destination = $destination->destroy($id)
-            ? [
-                    'message'    => "Successfully deleted employee",
-                    'alert' => 'success',
-            ]
-            : [
-                    'message'    => "Sorry it appears there was a problem deleting this employee",
-                    'alert' => 'error',
-            ];
 
-        return response()->json($destination);
+        $message = $destination->destroy($id) ? [
+            'message'   => "Successfully deleted destination",
+            'alert'     => 'success'
+        ]
+        : [
+            'message'    => "Sorry it appears there was a problem 
+                            deleting this destination",
+            'alert' => 'error',
+        ];
+
+        return response()->json($message);
+
     }
 }

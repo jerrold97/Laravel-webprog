@@ -72,26 +72,34 @@ class OfficialController extends Controller
     {
         if($request->ajax()){
 
-        $this->validate($request, [
-            
-            'fkofficial_province' => 'required',
-            'official_first' => 'required',
-            'official_last' => 'required'
-        ]);
-        $official = new Official([
+            $this->validate($request, [
+                
+                'fkofficial_province' => 'required',
+                'official_first' => 'required',
+                'official_last' => 'required'
+            ]);
+            $official = new Official([
 
-            'fkofficial_province' => $request->input('fkofficial_province'),
-            'official_first' => $request->input('official_first'),
-            'official_middle' => $request->input('official_middle'),
-            'official_last' => $request->input('official_last')
-        ]);
-        
-        $official->save();
-        Alert::success('Good job!')->persistent("Close");
-        //$destination->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
-        return redirect()->route('official.index')->with('info', 'Official Added, Official name is: ' . $request->input('official_first'));
-    }
-            else {
+                'fkofficial_province' => $request->input('fkofficial_province'),
+                'official_first' => $request->input('official_first'),
+                'official_middle' => $request->input('official_middle'),
+                'official_last' => $request->input('official_last')
+            ]);
+            
+           
+            $message = $official->save() ? [
+                'message'   => "Successfully added official",
+                'alert'     => 'success'
+            ]
+            : [
+                'message'    => "Sorry it appears there was a problem 
+                                adding this official",
+                'alert' => 'error',
+            ];
+
+            return response()->json($message);
+        }
+        else {
             return redirect(route('official.index'));
         }
     }
@@ -160,26 +168,38 @@ class OfficialController extends Controller
     public function update(Request $request,Official  $official)
     {
         if($request->ajax()){
-        $this->validate($request, [
+            $this->validate($request, [
 
-            'fkofficial_province' => 'required',
-            'official_first' => 'required',
-            'official_last' => 'required'
-        ]);
-        $official = Official::find($request->input('id'));
-    
-        $official->fkofficial_province = $request->input('fkofficial_province');
-        $official->official_first = $request->input('official_first');
-        $official->official_middle = $request->input('official_middle');
-        $official->official_last = $request->input('official_last');
+                'fkofficial_province' => 'required',
+                'official_first' => 'required',
+                'official_last' => 'required'
+            ]);
+            $official = Official::find($request->input('id'));
+        
+            $official->fkofficial_province = $request->input('fkofficial_province');
+            $official->official_first = $request->input('official_first');
+            $official->official_middle = $request->input('official_middle');
+            $official->official_last = $request->input('official_last');
 
 
-        $official->update();
-        //$post->tags()->detach();
-        //$post->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
-        //$post->tags()->sync($request->input('tags') === null ? [] : $request->input('tags'));
-        return redirect()->route('official.index')->with('info', 'Official Info edited for: ' . $request->input('official_first'));
-        }else{
+            //$official->update();
+            $message = $official->update() ? [
+                'message'   => "Successfully updated official",
+                'alert'     => 'success'
+            ]
+            : [
+                'message'    => "Sorry it appears there was a problem 
+                                updating this official",
+                'alert' => 'error',
+            ];
+
+            return response()->json($message);
+            //$post->tags()->detach();
+            //$post->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
+            //$post->tags()->sync($request->input('tags') === null ? [] : $request->input('tags'));
+            //return redirect()->route('official.index')->with('info', 'Official Info edited for: ' . $request->input('official_first'));
+        }
+        else{
             return redirect(route('official.index'));
         }
     }
@@ -193,7 +213,7 @@ class OfficialController extends Controller
     public function destroy(Request $request, $id)
     {
         $official = Official::findOrFail($id);
-        $official = $official->destroy($id)
+        $message = $official->destroy($id)
             ? [
                     'message'    => "Successfully deleted official",
                     'alert' => 'success',
@@ -203,6 +223,6 @@ class OfficialController extends Controller
                     'alert' => 'error',
             ];
 
-        return response()->json($official);
+        return response()->json($message);
     }
 }

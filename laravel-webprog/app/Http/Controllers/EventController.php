@@ -111,7 +111,18 @@ class EventController extends Controller
             'event_desc' => $request->input('event_desc')
         ]);
         
-        $event->save();
+        //$event->save();
+        $message = $event->save() ? [
+            'message'   => "Successfully added event",
+            'alert'     => 'success'
+        ]
+        : [
+            'message'    => "Sorry it appears there was a problem 
+                            adding this event",
+            'alert' => 'error',
+        ];
+
+        return response()->json($message);
         //Alert::success('Good job!')->persistent("Close");
         //$destination->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
         return redirect()->route('event.index')->with('info', 'Event Added, Event name is: ' . $request->input('event_name'));
@@ -183,23 +194,35 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        if($request->ajax()){
-        $this->validate($request, [
-            // Name of input in form
-            'fkevent_municipality' => 'required',
-            'event_name' => 'required',
-            'event_desc' => 'required'
-        ]);
+        if($request->ajax())
+        {
+            $this->validate($request, [
+                // Name of input in form
+                'fkevent_municipality' => 'required',
+                'event_name' => 'required',
+                'event_desc' => 'required'
+            ]);
 
-        $event = Event::find($request->input('id'));
-        $event->fkevent_municipality = $request->input('fkevent_municipality');
-        $event->event_name = $request->input('event_name');
-        $event->event_desc = $request->input('event_desc');
+            $event = Event::find($request->input('id'));
+            $event->fkevent_municipality = $request->input('fkevent_municipality');
+            $event->event_name = $request->input('event_name');
+            $event->event_desc = $request->input('event_desc');
 
-        $event->update();
+            //$event->update();
+            $message = $event->update() ? [
+                'message'   => "Successfully updated event",
+                'alert'     => 'success'
+            ]
+            : [
+                'message'    => "Sorry it appears there was a problem 
+                                updating this event",
+                'alert' => 'error',
+            ];
 
-        return redirect()->route('event.index')->with('info', 'Event edited for: ' . $request->input('event_name'));
-        }else{
+            return response()->json($message);
+            // return redirect()->route('event.index')->with('info', 'Event edited for: ' . $request->input('event_name'));
+        }
+        else {
             return redirect(route('event.index'));
         }
     }
@@ -213,7 +236,7 @@ class EventController extends Controller
     public function destroy(Request $request, $id)
     {
         $event = Event::findOrFail($id);
-        $event = $event->destroy($id)
+        $message = $event->destroy($id)
             ? [
                     'message'    => "Successfully deleted event",
                     'alert' => 'success',
@@ -223,6 +246,6 @@ class EventController extends Controller
                     'alert' => 'error',
             ];
 
-        return response()->json($event);
+        return response()->json($message);
     }
 }
