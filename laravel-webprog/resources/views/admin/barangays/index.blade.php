@@ -87,14 +87,16 @@
             //Load destinations where province == id
             function loadTableProvince(id){
                 //var id = $('#id').val();
+                console.log("loadTableProvince", id);
                 var query_municipality = $('#query_municipality').val();
                 loadMunicipalities(id, query_municipality);
                 $.ajax({
                     type: 'get',
-                    url: '{{ route('destination.table') }}'+"/" + id,
+                    url: '{{ route('barangay.table') }}'+"/" + id,
                     dataType: 'html',
                     success:function(data)
                     {
+                        console.log("loadTableProvince success");
                         $('#table-container').html(data);
                         $('#dataTable').DataTable();
                     }
@@ -146,13 +148,14 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: '{{ route("destination.index") }}' +"/query/" + province + "/" + municipality,
+                    url: '{{ route("barangay.index") }}' +"/query/" + province + "/" + municipality,
                     dataType: 'html',
                     success:function(data)
                     {
                         console.log(data);
                         $('#table-container').html(data);
                         $('#dataTable').DataTable();
+                        console.log("success data loadTableMunicipalities");
                     },
                     catch: function(data)
                     {
@@ -195,7 +198,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: '{{ route("destination.index") }}' +"/query/" + province + "/" + municipality + "/" + barangay,
+                    url: '{{ route("barangay.index") }}' +"/query/" + province + "/" + municipality + "/" + barangay,
                     dataType: 'html',
                     success:function(data)
                     {
@@ -229,6 +232,7 @@
                     }
                 });        
             }
+
         });
 
 </script>
