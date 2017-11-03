@@ -55,7 +55,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
+          {{-- <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
@@ -68,7 +68,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{ asset('admin_template/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('admin_template/dist/img/18113378.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -115,7 +115,7 @@
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li><!-- Task item -->
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Design some buttons
@@ -135,17 +135,17 @@
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('admin_template/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+              <img src="{{ asset('admin_template/dist/img/18113378.jpg')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Jerrold Verzosa </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ asset('admin_template/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{ asset('admin_template/dist/img/18113378.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -196,7 +196,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ asset('admin_template/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+          <img src="{{ asset('admin_template/dist/img/18113378.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Jerrold Verzosa</p>
